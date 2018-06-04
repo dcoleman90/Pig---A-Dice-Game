@@ -4,6 +4,7 @@ import edu.westga.cs6910.pig.model.Game;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
@@ -18,6 +19,7 @@ import javafx.scene.layout.HBox;
 public class StatusPane extends GridPane implements InvalidationListener {
 	private Game theGame;
 	private Label lblStatus;
+
 	
 	/**
 	 * Creates a new status pane that observes the specified game. 

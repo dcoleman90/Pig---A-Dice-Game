@@ -5,6 +5,7 @@ import edu.westga.cs6910.pig.model.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -42,14 +43,6 @@ public class PigPane extends BorderPane {
 		this.addHumanPlayerPane(theGame);
 		this.addStatusPane(theGame);
 		this.addComputerPlayerPane(theGame);
-		// TODO: 1. Using the 'first player chooser pane' as a guide
-		//  Create an HBox with the appropriate style, then make a human
-		//	player pane and add it to the HBox. Finally add the HBox to the content pane	
-	
-		// TODO: 2. Using the other panes as a guide, create and add a status pane	
-
-		// TODO: 3. Using the other panes as a guide, create and add a computer pane
-
 		this.setCenter(this.pnContent);
 	}
 
@@ -111,11 +104,23 @@ public class PigPane extends BorderPane {
 			
 			this.radHumanPlayer = new RadioButton(this.theHuman.getName() + " first");	
 			this.radHumanPlayer.setOnAction(new HumanFirstListener());
+			this.radComputerPlayer = new RadioButton("TESTING PLEASE WORK first");
+			this.radComputerPlayer.setOnAction(new ComputerFirstListener());
 			
+			//Believe this task is done
 			// TODO: Instantiate the computer player button and add 
 			//		 ComputerFirstListener as its action listener.
 			
+			ToggleGroup firstPlayerSelection = new ToggleGroup();
+			HBox newGameSelection = new HBox();
+			newGameSelection.setSpacing(10);
+			this.radComputerPlayer.setToggleGroup(firstPlayerSelection);
+			this.radHumanPlayer.setToggleGroup(firstPlayerSelection);
+			
+			
 			// TODO: Create a ToggleGroup and add the 2 radio buttons to it.
+			
+			this.getChildren().add(newGameSelection);
 			
 			// TODO: Add the 2 radio buttons to this pane.
 
