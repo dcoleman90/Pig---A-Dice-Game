@@ -4,3 +4,6 @@
 /PigPane.class
 /ComputerPane$TakeTurnListener.class
 /ComputerPane.class
+/NewGamePane$ComputerFirstListener.class
+/NewGamePane$HumanFirstListener.class
+/NewGamePane.class
