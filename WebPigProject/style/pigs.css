@@ -1,0 +1,151 @@
+* {
+	box-sizing: border-box;
+}
+
+header, nav, main, footer {
+	display: block;
+}
+
+body {
+	background-color: #ff80ff;
+	font-family: Verdana, Arial or sans-serif font;
+}
+
+header {
+	background-color: #0080c0;
+	background-repeat: no-repeat;
+	background-position: right;
+	height: 150px;
+}
+
+h1 {
+	padding-top: 50px;
+	padding-left: 2em;
+}
+
+ul {
+	list-style-type: none;
+	padding-top: 0; padding-left : 10px;
+	overflow: hidden;
+	background-color: #0000ff;
+	padding-left: 10px;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: #ff80c0;
+}
+
+#headerImage {
+	height: 150px;
+	float: right;
+	margin: 0;
+}
+
+#bodyImage {
+	float: right;
+	margin-left: 30px;
+	margin-bottom:25px;
+	padding: 5px;
+	height: 400px;
+	width: 400px;
+	border-radius: 45px;
+}
+
+#homeImage {
+	float: left;
+	margin-right: 30px;
+	margin-bottom:25px;
+	padding: 5px;
+}
+
+.homePage {
+	float: left;
+	width: 160px;
+	padding: 100px;
+	font-weight: bold;
+	padding: 1em;
+}
+
+homePage a {
+	display: block;
+	text-decoration: none;
+	padding: 1em;
+	box-sizing: border-box;
+	text-align: center;
+	font-weight: bold;
+	border: 3px;
+	border-style: outset;
+	border-color: #CCCCCC;
+	margin-bottom: 1em;
+}
+
+homePage a:link {
+	color: #3F2860;
+}
+
+homePage a:visited {
+	color: #497777;
+}
+
+homePage a:hover {
+	color: #A26100;
+	border: 3px inset #333333;
+}
+
+homePage ul {
+	list-style-type: none;
+	margin: 0;
+	padding-left: 0px;
+}
+
+main {
+	padding-left : 2em;
+	padding-right: 2em;
+	display: block;
+	margin-left: 120px;
+	margin-right: 120px;
+	padding-top: 1em;
+	padding-left: 2em;
+	min-height:400px;
+}
+
+.studio {
+	font-style: italic;
+}
+
+#floatleft {
+	float: left;
+	margin-right: 4em;
+}
+
+#wrapper {
+	margin-left: auto;
+	margin-right: auto;
+	min-width: 1200px;
+	max-width: 1480px;
+	background-color: #FFFFFF;
+}
+
+#clear {
+	clear: both;
+}
+
+footer {
+	background-color: #0080c0;
+	font-size: .60em;
+	font-style: italic;
+	text-align: center;
+	padding: 1em;
+}
