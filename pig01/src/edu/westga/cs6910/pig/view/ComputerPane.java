@@ -61,6 +61,10 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 
 		HBox buttonBox = new HBox();
 		buttonBox.getStyleClass().add("box-padding");
+		this.btnTakeTurn = new Button("Take Turn");
+		this.btnTakeTurn.setOnAction(new TakeTurnListener());
+		buttonBox.getChildren().add(this.btnTakeTurn);
+		this.add(buttonBox, 0, 2);
 		
 		HBox bottomBox = new HBox();
 		bottomBox.getStyleClass().add("box-padding");
@@ -81,10 +85,17 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		boolean myTurn = this.theGame.getCurrentPlayer() == theComputer;
 		
 		if (!myTurn) {
+			
+			//new Code still under construction
+			int turnTotal = this.theComputer.getTurnTotal();
+			String result = this.theComputer.getDiceValues();
+			this.lblDiceValues.setText(result);
+			this.lblTurnTotal.setText("" + turnTotal);
 			// TODO: Set the user interface to show the results
 			// of the computer rolling the dice
 
 		} 
+		this.setDisable(myTurn);
 		// TODO: Disable this Pane if it is no longer the computer's turn, enable it if
 		// it is the computer's turn
 
