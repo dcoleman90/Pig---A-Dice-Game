@@ -65,7 +65,7 @@ public class PigPane extends BorderPane {
 		HBox leftBox = new HBox();
 		leftBox.getStyleClass().add("pane-border");	
 		this.pnHumanPlayer = new HumanPane(theGame);
-		leftBox.getChildren().add(this.pnChooseFirstPlayer);
+		leftBox.getChildren().add(this.pnHumanPlayer);
 		this.pnContent.setLeft(leftBox);
 	}
 
