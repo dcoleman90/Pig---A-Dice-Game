@@ -9,11 +9,13 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 
 /**
  * Defines the pane that lets the user either roll or hold during
  * 	their turn
  * This class was started by CS6910
+ * @author Drew Coleman
  * 
  */
 public class ComputerPane extends GridPane implements InvalidationListener {
@@ -43,6 +45,29 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	
 	private void buildPane() {
 		// TODO: Using the other pane classes as a model, build this pane.
+		//Using basic code structure from HumanPane built the computer pane - this is to be used as a guide and will need to be reworked
+		HBox topBox = new HBox();
+		topBox.getStyleClass().add("box-center");	
+		topBox.getStyleClass().add("box-padding");
+		topBox.getChildren().add(new Label("~~ " + this.theComputer.getName() + " ~~"));
+		this.add(topBox, 0, 0, 2, 1);
+		
+		HBox middleBox = new HBox();
+		middleBox.getStyleClass().add("box-padding");		
+		middleBox.getChildren().add(new Label("Dice Values: "));
+		this.lblDiceValues = new Label("-, -");
+		middleBox.getChildren().add(this.lblDiceValues);
+		this.add(middleBox, 0, 1);
+
+		HBox buttonBox = new HBox();
+		buttonBox.getStyleClass().add("box-padding");
+		
+		HBox bottomBox = new HBox();
+		bottomBox.getStyleClass().add("box-padding");
+		bottomBox.getChildren().add(new Label("Turn Total: "));
+		this.lblTurnTotal = new Label("0");
+		bottomBox.getChildren().add(this.lblTurnTotal);
+		this.add(bottomBox, 0, 3);
 
 	}
 
