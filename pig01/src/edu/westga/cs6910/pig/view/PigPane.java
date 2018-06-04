@@ -10,6 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 
 /**
@@ -104,25 +105,16 @@ public class PigPane extends BorderPane {
 			
 			this.radHumanPlayer = new RadioButton(this.theHuman.getName() + " first");	
 			this.radHumanPlayer.setOnAction(new HumanFirstListener());
-			this.radComputerPlayer = new RadioButton("TESTING PLEASE WORK first");
+			this.radComputerPlayer = new RadioButton(this.theComputer.getName() + " first");
 			this.radComputerPlayer.setOnAction(new ComputerFirstListener());
-			
-			//Believe this task is done
-			// TODO: Instantiate the computer player button and add 
-			//		 ComputerFirstListener as its action listener.
-			
 			ToggleGroup firstPlayerSelection = new ToggleGroup();
-			HBox newGameSelection = new HBox();
-			newGameSelection.setSpacing(10);
-			this.radComputerPlayer.setToggleGroup(firstPlayerSelection);
+			HBox newGameSelector = new HBox();
+			newGameSelector.setSpacing(10);
 			this.radHumanPlayer.setToggleGroup(firstPlayerSelection);
-			
-			
-			// TODO: Create a ToggleGroup and add the 2 radio buttons to it.
-			
-			this.getChildren().add(newGameSelection);
-			
-			// TODO: Add the 2 radio buttons to this pane.
+			this.radComputerPlayer.setToggleGroup(firstPlayerSelection);
+			newGameSelector.getChildren().add(radHumanPlayer);
+			newGameSelector.getChildren().add(radComputerPlayer);
+			this.getChildren().add(newGameSelector);
 
 		}
 		
@@ -153,7 +145,9 @@ public class PigPane extends BorderPane {
 			 */
 			@Override
 			public void handle(ActionEvent event) {
+				PigPane.this.pnHumanPlayer.setDisable(false);
 				PigPane.this.pnChooseFirstPlayer.setDisable(true);
+				PigPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 				// TODO: Enable the human player pane and start a game
 				//		 with the human playing first.
 
