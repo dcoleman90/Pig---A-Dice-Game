@@ -8,3 +8,6 @@
 /NewGamePane$HumanFirstListener.class
 /NewGamePane.class
 /StatusPane.class
+/HumanPane$HoldListener.class
+/HumanPane$TakeTurnListener.class
+/HumanPane.class
