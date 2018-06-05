@@ -19,6 +19,7 @@ public abstract class AbstractPlayer implements Player {
 	 */
 	public AbstractPlayer() {
 		this.thePair = new DicePair();
+		this.total = 0;
 	}
 	
 	@Override
