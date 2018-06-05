@@ -81,7 +81,6 @@ public class HumanPane extends GridPane implements InvalidationListener {
 	@Override
 	public void invalidated(Observable observable) {
 		if (this.theGame.isGameOver()) {
-		//this.theHuman.resetTurnTotal();
 			this.setDisable(true);
 			return;
 		}
@@ -121,7 +120,6 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		@Override
 		public void handle(ActionEvent event) {
 			if (!HumanPane.this.theGame.isGameOver()) {
-				HumanPane.this.theHuman.resetTurnTotal();
 				HumanPane.this.theGame.hold();
 			}
 		}
