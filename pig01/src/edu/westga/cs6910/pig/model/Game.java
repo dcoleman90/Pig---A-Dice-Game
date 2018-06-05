@@ -194,8 +194,10 @@ public class Game implements Observable {
 		
 		if (this.currentPlayerObject.getValue() == this.theHuman) {
 			this.currentPlayerObject.setValue(this.theComputer);
+			this.theComputer.resetTurnTotal();
 		} else {
 			this.currentPlayerObject.setValue(this.theHuman);
+			this.theHuman.resetTurnTotal();
 		}
 	}
 
