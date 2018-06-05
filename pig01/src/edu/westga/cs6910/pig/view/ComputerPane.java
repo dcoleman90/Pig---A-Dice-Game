@@ -35,17 +35,14 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	 */
 	public ComputerPane(Game theGame) {
 		this.theGame = theGame;
-		
-		// TODO: Add this object as an listener of the Game.
-		
+		this.theGame.addListener(this);		
 		this.theComputer = this.theGame.getComputerPlayer();
 		
 		this.buildPane();
 	}
 	
 	private void buildPane() {
-		// TODO: Using the other pane classes as a model, build this pane.
-		//Using basic code structure from HumanPane built the computer pane - this is to be used as a guide and will need to be reworked
+
 		HBox topBox = new HBox();
 		topBox.getStyleClass().add("box-center");	
 		topBox.getStyleClass().add("box-padding");
@@ -86,19 +83,13 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		
 		if (!myTurn) {
 		}	
-			//new Code still under construction
+		
 			int turnTotal = this.theComputer.getTurnTotal();
 			String result = this.theComputer.getDiceValues();
 			this.lblDiceValues.setText(result);
 			this.lblTurnTotal.setText("" + turnTotal);
 			
-			// TODO: Set the user interface to show the results
-			// of the computer rolling the dice
-
 		this.setDisable(!myTurn);
-		// TODO: Disable this Pane if it is no longer the computer's turn, enable it if
-		// it is the computer's turn
-
 	}
 
 	/* 
@@ -119,10 +110,6 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 			if (!ComputerPane.this.theGame.isGameOver()) {
 				ComputerPane.this.theGame.hold();
 			}
-			// TODO: if the game isn't finished: 
-			//		 - Set the maximum number of rolls
-			//		 - Tell theGame to play a move.
-
 		}
 	}
 }
