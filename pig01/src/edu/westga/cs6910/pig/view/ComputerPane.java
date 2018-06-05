@@ -12,45 +12,47 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 /**
- * Defines the pane that lets the user either roll or hold during
- * 	their turn
+ * Defines the pane that lets the user either roll or hold during their turn
  * This class was started by CS6910
+ * 
  * @author Drew Coleman
+ * @version 06/03/18
  * 
  */
 public class ComputerPane extends GridPane implements InvalidationListener {
 	private Label lblDiceValues;
 	private Label lblTurnTotal;
 	private Button btnTakeTurn;
-	
+
 	private ComputerPlayer theComputer;
 	private Game theGame;
 
 	/**
-	 * Creates a new ComputerPane that observes the specified game. 
+	 * Creates a new ComputerPane that observes the specified game.
 	 * 
-	 * @param theGame	the model object from which this pane gets its data
+	 * @param theGame
+	 *            the model object from which this pane gets its data
 	 * 
-	 * @requires 	theGame != null
+	 * @requires theGame != null
 	 */
 	public ComputerPane(Game theGame) {
 		this.theGame = theGame;
-		this.theGame.addListener(this);		
+		this.theGame.addListener(this);
 		this.theComputer = this.theGame.getComputerPlayer();
-		
+
 		this.buildPane();
 	}
-	
+
 	private void buildPane() {
 
 		HBox topBox = new HBox();
-		topBox.getStyleClass().add("box-center");	
+		topBox.getStyleClass().add("box-center");
 		topBox.getStyleClass().add("box-padding");
 		topBox.getChildren().add(new Label("~~ " + this.theComputer.getName() + " ~~"));
 		this.add(topBox, 0, 0, 2, 1);
-		
+
 		HBox middleBox = new HBox();
-		middleBox.getStyleClass().add("box-padding");		
+		middleBox.getStyleClass().add("box-padding");
 		middleBox.getChildren().add(new Label("Dice Values: "));
 		this.lblDiceValues = new Label("-, -");
 		middleBox.getChildren().add(this.lblDiceValues);
@@ -62,7 +64,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		this.btnTakeTurn.setOnAction(new TakeTurnListener());
 		buttonBox.getChildren().add(this.btnTakeTurn);
 		this.add(buttonBox, 0, 2);
-		
+
 		HBox bottomBox = new HBox();
 		bottomBox.getStyleClass().add("box-padding");
 		bottomBox.getChildren().add(new Label("Turn Total: "));
@@ -78,35 +80,31 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 			this.setDisable(true);
 			return;
 		}
-		
+
 		boolean myTurn = this.theGame.getCurrentPlayer() == theComputer;
-		
-		if (!myTurn) {
-		}	
-		
-			int turnTotal = this.theComputer.getTurnTotal();
-			String result = this.theComputer.getDiceValues();
-			this.lblDiceValues.setText(result);
-			this.lblTurnTotal.setText("" + turnTotal);
-			
+		int turnTotal = this.theComputer.getTurnTotal();
+		String result = this.theComputer.getDiceValues();
+		this.lblDiceValues.setText(result);
+		this.lblTurnTotal.setText("" + turnTotal);
+
 		this.setDisable(!myTurn);
 	}
 
-	/* 
+	/*
 	 * Defines the listener for takeTurnButton.
 	 */
 	private class TakeTurnListener implements EventHandler<ActionEvent> {
 
-		/* 
-		 * Tells the Game to have its current player (i.e., the computer player)
-		 * take its turn.	
+		/*
+		 * Tells the Game to have its current player (i.e., the computer player) take
+		 * its turn.
 		 * 
 		 * @see javafx.event.EventHandler#handle(T-extends-javafx.event.Event)
 		 */
 		@Override
 		public void handle(ActionEvent arg0) {
-				ComputerPane.this.theComputer.setMaximumRolls(2);
-				ComputerPane.this.theComputer.takeTurn();
+			ComputerPane.this.theComputer.setMaximumRolls(2);
+			ComputerPane.this.theComputer.takeTurn();
 			if (!ComputerPane.this.theGame.isGameOver()) {
 				ComputerPane.this.theGame.hold();
 			}

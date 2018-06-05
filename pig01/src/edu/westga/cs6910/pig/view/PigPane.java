@@ -10,12 +10,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-
 
 /**
  * Defines a GUI for the Pig game.
  * This class was started by CS6910
+ * 
+ * @author Drew Coleman
+ * @version 06/04/2018
  * 
  */
 public class PigPane extends BorderPane {
@@ -112,8 +113,8 @@ public class PigPane extends BorderPane {
 			newGameSelector.setSpacing(10);
 			this.radHumanPlayer.setToggleGroup(firstPlayerSelection);
 			this.radComputerPlayer.setToggleGroup(firstPlayerSelection);
-			newGameSelector.getChildren().add(radHumanPlayer);
-			newGameSelector.getChildren().add(radComputerPlayer);
+			newGameSelector.getChildren().add(this.radHumanPlayer);
+			newGameSelector.getChildren().add(this.radComputerPlayer);
 			this.getChildren().add(newGameSelector);
 
 		}
@@ -148,9 +149,6 @@ public class PigPane extends BorderPane {
 				PigPane.this.pnHumanPlayer.setDisable(false);
 				PigPane.this.pnChooseFirstPlayer.setDisable(true);
 				PigPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
-				// TODO: Enable the human player pane and start a game
-				//		 with the human playing first.
-
 			}
 		}
 	}
