@@ -171,10 +171,6 @@ public class Game implements Observable {
 				+ this.theComputer.getName() + ": "
 						+ this.theComputer.getTotal();
 		
-		//if (!this.isGameOver()) {
-		//	return result;
-		//}
-		
 		if (this.theHuman.getTotal() >= GOAL_SCORE) {
 			return result + System.getProperty("line.separator")
 					+ "Game over! Winner: " + this.theHuman.getName();
