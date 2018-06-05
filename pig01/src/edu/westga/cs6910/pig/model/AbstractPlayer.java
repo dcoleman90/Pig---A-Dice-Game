@@ -34,6 +34,7 @@ public abstract class AbstractPlayer implements Player {
 		if (die1Value == 1 || die2Value == 1) {	
 			this.total -= this.turnTotal;
 			this.isMyTurn = false;
+			this.resetTurnTotal();
 		} else {
 			this.turnTotal += die1Value + die2Value;
 			this.total += die1Value + die2Value;
