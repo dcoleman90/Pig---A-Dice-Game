@@ -9,6 +9,8 @@ import javafx.beans.property.SimpleObjectProperty;
  * Game represents a Pig game.
  * @author	CS6910
  * @version	Summer 2018
+ * @author Drew Coleman
+ * @version 06/04/2018
  */
 public class Game implements Observable {
 
@@ -191,9 +193,9 @@ public class Game implements Observable {
 	private void swapWhoseTurn() {
 		
 		if (this.currentPlayerObject.getValue() == this.theHuman) {
-			this.currentPlayerObject.setValue(theComputer);
+			this.currentPlayerObject.setValue(this.theComputer);
 		} else {
-			this.currentPlayerObject.setValue(theHuman);
+			this.currentPlayerObject.setValue(this.theHuman);
 		}
 	}
 
