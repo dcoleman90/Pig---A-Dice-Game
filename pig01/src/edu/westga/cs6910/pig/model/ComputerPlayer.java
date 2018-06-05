@@ -53,10 +53,9 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @see Player#takeTurn()
 	 */	
 	public void takeTurn() {				
-		int counter = 0;
-		if (this.maximumRolls >= counter) {
+		
+		for (int counter = 0; counter < this.maximumRolls; counter++) {
 			super.takeTurn();
-			counter++;
 		}
 	}
 
