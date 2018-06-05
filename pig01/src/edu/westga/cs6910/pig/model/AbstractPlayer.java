@@ -9,18 +9,53 @@ package edu.westga.cs6910.pig.model;
  *
  */
 public abstract class AbstractPlayer implements Player {
-	private String name;
 	private DicePair thePair;
-	private boolean isMyTurn;
 	private int total;
 	private int turnTotal;
-
-	AbstractPlayer(String name) {
-		this.name = name;
+	private boolean isMyTurn;
+	
+	/**
+	 * This is the constructor which will set up all identical player methods
+	 */
+	public AbstractPlayer() {
 		this.thePair = new DicePair();
-
 	}
-
+	
+	@Override
+	/**
+	 * @see Player#takeTurn()
+	 */
+	public void takeTurn() {	
+		this.thePair.rollDice();
+		
+		int die1Value = this.thePair.getDie1Value();
+		int die2Value = this.thePair.getDie2Value();
+		if (die1Value == 1 || die2Value == 1) {	
+			this.total -= this.turnTotal;
+			this.isMyTurn = false;
+		} else {
+			this.turnTotal += die1Value + die2Value;
+			this.total += die1Value + die2Value;
+			this.isMyTurn = true;
+		}
+	}
+	
+	@Override
+	/**
+	 * @see Player#getDiceValues()
+	 */
+	public String getDiceValues() {
+		return this.thePair.getDie1Value() + ", " + this.thePair.getDie2Value();
+	}
+	
+	@Override
+	/**
+	 * @see Player#resetTurnTotal()
+	 */	
+	public void resetTurnTotal() {
+		this.turnTotal = 0;
+	}
+	
 	@Override	
 	/**
 	 * @see Player#getIsMyTurn()
@@ -28,36 +63,20 @@ public abstract class AbstractPlayer implements Player {
 	public boolean getIsMyTurn() {
 		return this.isMyTurn;
 	}
-
+	
+	@Override
+	/**
+	 * @see Player#getTotal()
+	 */
+	public int getTotal() {
+		return this.total;
+	}
+	
 	@Override	
 	/**
 	 * @see Player#getTurnTotal()
 	 */
 	public int getTurnTotal() {
 		return this.turnTotal;
-	}
-
-	@Override	
-	/**
-	 * @see Player#getName()
-	 */
-	public String getName() {
-		return this.name;
-	}
-
-	@Override	
-	/**
-	 * @see Player#getDiceValues()
-	 */
-	public String getDiceValues() {
-		return this.thePair.getDie1Value() + ", " + this.thePair.getDie2Value();
-	}
-
-	@Override	
-	/**
-	 * @see Player#getTotal()
-	 */
-	public int getTotal() {
-		return this.total;
 	}
 }

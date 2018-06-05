@@ -6,13 +6,12 @@ package edu.westga.cs6910.pig.model;
  * @author	CS6910
  * @version	Summer 2018
  */
-public class HumanPlayer implements Player {
+public class HumanPlayer extends AbstractPlayer {
 
 	private String name;
-	private DicePair thePair;
-	private boolean isMyTurn;	
-	private int total;
-	private int turnTotal;
+//	private boolean isMyTurn;	
+//	private int total;
+//	private int turnTotal;
 	
 	/**
 	 * Creates a new ComputerPlayer with the specified name.
@@ -23,54 +22,55 @@ public class HumanPlayer implements Player {
 	 * @ensure		name().equals(name) && getTotal() == 0
 	 */
 	public HumanPlayer(String name) {
+		super();
 		this.name = name;
-		this.thePair = new DicePair();
+	//	this.thePair = new DicePair();
 	}
 
 	// ************************** mutator methods ********************************	
-	@Override
-	/**
-	 * @see Player#resetTurnTotal()
-	 */	
-	public void resetTurnTotal() {
-		this.turnTotal = 0;
-	}
+//	@Override
+//	/**
+//	 * @see Player#resetTurnTotal()
+//	 */	
+//	public void resetTurnTotal() {
+//		this.turnTotal = 0;
+//	}
 	
-	@Override
-	/**
-	 * @see Player#takeTurn()
-	 */
-	public void takeTurn() {	
-		this.thePair.rollDice();
-		
-		int die1Value = this.thePair.getDie1Value();
-		int die2Value = this.thePair.getDie2Value();
-		if (die1Value == 1 || die2Value == 1) {	
-			this.total -= this.turnTotal;
-			this.isMyTurn = false;
-		} else {
-			this.turnTotal += die1Value + die2Value;
-			this.total += die1Value + die2Value;
-			this.isMyTurn = true;
-		}
-	}	
+//	@Override
+//	/**
+//	 * @see Player#takeTurn()
+//	 */
+//	public void takeTurn() {	
+//		this.thePair.rollDice();
+//		
+//		int die1Value = this.thePair.getDie1Value();
+//		int die2Value = this.thePair.getDie2Value();
+//		if (die1Value == 1 || die2Value == 1) {	
+//			this.total -= this.turnTotal;
+//			this.isMyTurn = false;
+//		} else {
+//			this.turnTotal += die1Value + die2Value;
+//			this.total += die1Value + die2Value;
+//			this.isMyTurn = true;
+//		}
+//	}	
 	
 	//*************************** accessor methods ****************************
-	@Override	
-	/**
-	 * @see Player#getIsMyTurn()
-	 */
-	public boolean getIsMyTurn() {
-		return this.isMyTurn;
-	}
-	
-	@Override	
-	/**
-	 * @see Player#getTurnTotal()
-	 */
-	public int getTurnTotal() {
-		return this.turnTotal;
-	}
+//	@Override	
+//	/**
+//	 * @see Player#getIsMyTurn()
+//	 */
+//	public boolean getIsMyTurn() {
+//		return this.isMyTurn;
+//	}
+//	
+//	@Override	
+//	/**
+//	 * @see Player#getTurnTotal()
+//	 */
+//	public int getTurnTotal() {
+//		return this.turnTotal;
+//	}
 	
 	@Override
 	/**
@@ -80,19 +80,19 @@ public class HumanPlayer implements Player {
 		return this.name;
 	}
 	
-	@Override
-	/**
-	 * @see Player#getDiceValues()
-	 */
-	public String getDiceValues() {
-		return this.thePair.getDie1Value() + ", " + this.thePair.getDie2Value();
-	}
+//	@Override
+//	/**
+//	 * @see Player#getDiceValues()
+//	 */
+//	public String getDiceValues() {
+//		return this.thePair.getDie1Value() + ", " + this.thePair.getDie2Value();
+//	}
 	
-	@Override
-	/**
-	 * @see Player#getTotal()
-	 */
-	public int getTotal() {
-		return this.total;
-	}
+//	@Override
+//	/**
+//	 * @see Player#getTotal()
+//	 */
+//	public int getTotal() {
+//		return this.total;
+//	}
 }
