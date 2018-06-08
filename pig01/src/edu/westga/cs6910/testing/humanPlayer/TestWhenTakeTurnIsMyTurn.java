@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.HumanPlayer;
 
-class TestWhenTakeTurn {
+class TestWhenTakeTurnIsMyTurn {
 
 	@AfterEach
 	void tearDown() throws Exception {
