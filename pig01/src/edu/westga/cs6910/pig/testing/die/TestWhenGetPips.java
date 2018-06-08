@@ -19,7 +19,4 @@ class TestWhenGetPips {
 		Die newDie = new Die(new Random());
 		assertEquals(1, newDie.getNumberOfPips());
 	}
-	
-	
-
 }
