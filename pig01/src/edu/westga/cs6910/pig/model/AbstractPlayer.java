@@ -85,6 +85,7 @@ public abstract class AbstractPlayer implements Player {
 	/**
 	 * This method will return the value of the first die
 	 * it is used mostly for testing purposes
+	 * @return die 1 value
 	 */
 	public int getDie1Result() {
 		return this.thePair.getDie1Value();
@@ -93,6 +94,7 @@ public abstract class AbstractPlayer implements Player {
 	/**
 	 * This method will return the value of the second die
 	 * it is used mostly for testing purposes
+	 * @return die 2 value
 	 */
 	public int getDie2Result() {
 		return this.thePair.getDie2Value();
