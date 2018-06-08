@@ -81,4 +81,20 @@ public abstract class AbstractPlayer implements Player {
 	public int getTurnTotal() {
 		return this.turnTotal;
 	}
+	
+	/**
+	 * This method will return the value of the first die
+	 * it is used mostly for testing purposes
+	 */
+	public int getDie1Result() {
+		return this.thePair.getDie1Value();
+	}
+	
+	/**
+	 * This method will return the value of the second die
+	 * it is used mostly for testing purposes
+	 */
+	public int getDie2Result() {
+		return this.thePair.getDie2Value();
+	}
 }

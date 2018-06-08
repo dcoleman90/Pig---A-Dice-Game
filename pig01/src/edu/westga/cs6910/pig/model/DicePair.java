@@ -32,6 +32,7 @@ public class DicePair {
 	/**
 	 * Returns the number of pips showing on the first die
 	 * @return	The number of pips showing on the first die
+	 * 
 	 */
 	public int getDie1Value() {
 		return this.die1.getNumberOfPips();
