@@ -99,4 +99,5 @@ public abstract class AbstractPlayer implements Player {
 	public int getDie2Result() {
 		return this.thePair.getDie2Value();
 	}
+	
 }
