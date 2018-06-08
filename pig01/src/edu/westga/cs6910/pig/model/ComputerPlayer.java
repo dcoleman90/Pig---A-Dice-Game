@@ -47,6 +47,14 @@ public class ComputerPlayer extends AbstractPlayer {
 	public void setMaximumRolls() {
 		this.maximumRolls = 1;
 	}
+	
+	/**
+	 * THis is the getter for maxiumRolls and is used primarily for testing the default and secondary constructors
+	 * @return this.maxiumRolls
+	 */
+	public int getMaxiumRolls() {
+		return this.maximumRolls;
+	}
 
 	@Override
 	/**
