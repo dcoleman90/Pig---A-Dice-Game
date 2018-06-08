@@ -11,7 +11,7 @@ package edu.westga.cs6910.pig.model;
  */
 public class ComputerPlayer extends AbstractPlayer {
 	
-	private static final String NAME = "Simple computer";
+	private static final String NAME = "Simple Computer";
 	
 	private String name;
 	private int maximumRolls;
