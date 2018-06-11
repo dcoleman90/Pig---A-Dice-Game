@@ -158,7 +158,7 @@ public class Game implements Observable {
 	/**
 	 * Returns a String showing the goal score, or, if the game is over, the name of
 	 * the winner.
-	 * 
+	 *  
 	 * @return a String representation of this Game
 	 */
 	public String toString() {
