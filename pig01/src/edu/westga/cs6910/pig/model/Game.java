@@ -209,10 +209,29 @@ public class Game implements Observable {
 	public ObjectProperty<Player> getCurrentPlayerObject() {
 		return this.currentPlayerObject;
 	}
-
+	
+	/**
+	 * Added setter for instance variable currentPlayerObject used mostly for
+	 * testing purposes - this method changes the currentPlayerObject to theComputer
+	 * 
+	 * @param theComputerPlayer is the new accepted currentPlayerObject
+	 */
+	public void setCurrentPlayerObjectToComputer(ComputerPlayer theComputerPlayer) {
+		this.currentPlayerObject.setValue(theComputerPlayer);
+	}
 
 	/**
-	 * Added getter for instance variable theHuman used mostly for testing purposes
+	 * Added setter for instance variable currentPlayerObject used mostly for
+	 * testing purposes - this method changes the currentPlayerObject to theHuman
+	 * 
+	 * @param theHumanPlayer is the new accepted currentPlayerObject
+	 */
+	public void setCurrentPlayerObjectToHuman(HumanPlayer theHumanPlayer) {
+		this.currentPlayerObject.setValue(theHumanPlayer);
+	}
+
+	/**
+	 * Added setter for instance variable theHuman used mostly for testing purposes
 	 * 
 	 * @param theHuman
 	 *            is the HumanPlayer
@@ -222,7 +241,7 @@ public class Game implements Observable {
 	}
 
 	/**
-	 * Added getter for instance variable theComputer used mostly for testing
+	 * Added setter for instance variable theComputer used mostly for testing
 	 * purposes
 	 * 
 	 * @param theComputer
