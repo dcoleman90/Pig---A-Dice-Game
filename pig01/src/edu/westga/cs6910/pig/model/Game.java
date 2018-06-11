@@ -198,8 +198,7 @@ public class Game implements Observable {
 		this.currentPlayerObject.removeListener(theListener);
 	}
 
-	// ****************************** Testing Methods
-	// ******************************************
+	// ****************************** Testing Methods *****************************
 
 	/**
 	 * Added getter for instance variable currentPlayerObject used mostly for
@@ -211,16 +210,6 @@ public class Game implements Observable {
 		return this.currentPlayerObject;
 	}
 
-	/**
-	 * Added setter for instance variable currentPlayerObject used mostly for
-	 * testing purposes
-	 * 
-	 * @param currentPlayerObject
-	 *            is player object currently selected
-	 */
-	public void setCurrentPlayerObject(ObjectProperty<Player> currentPlayerObject) {
-		this.currentPlayerObject = currentPlayerObject;
-	}
 
 	/**
 	 * Added getter for instance variable theHuman used mostly for testing purposes

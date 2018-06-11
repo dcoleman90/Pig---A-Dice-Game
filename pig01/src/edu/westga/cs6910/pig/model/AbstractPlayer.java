@@ -100,4 +100,12 @@ public abstract class AbstractPlayer implements Player {
 		return this.thePair.getDie2Value();
 	}
 	
+	/**
+	 * This method is used for testing and Sets the total at the accepted value
+	 * @param = newTotal is the value this.total will be set too
+	 * only to be used when testing
+	 */
+	public void setTotal(int newTotal) {
+		this.total = newTotal;
+	}
 }
