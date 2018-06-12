@@ -45,4 +45,12 @@ public class DicePair {
 	public int getDie2Value() {
 		return this.die2.getNumberOfPips();
 	}
+	
+	/**
+	 * This method is used for testing and will return a String representation of the object
+	 * @return Dice 1: + this.die1 + Dice 2: + this.die2
+	 */
+	public String toString() {
+		return "Die1: " + this.getDie1Value() + " Die2: " + this.getDie2Value();
+	}
 }
