@@ -26,6 +26,15 @@ public class ComputerPlayer extends AbstractPlayer {
 	}
 
 	//*************************** mutator methods ****************************
+
+	/**
+	 * Implements Player's setMaximumRolls() to set the 
+	 * maximum number of rolls to 1
+	 * 
+	 */
+	public void setMaximumRolls() {
+		this.maximumRolls = 1;
+	}
 	
 	/**
 	 * Implements Player's setMaximumRolls, but is not normally
@@ -39,14 +48,6 @@ public class ComputerPlayer extends AbstractPlayer {
 		this.maximumRolls = maximumRolls;
 	}
 
-	/**
-	 * Implements Player's setMaximumRolls() to set the 
-	 * maximum number of rolls to 1
-	 * 
-	 */
-	public void setMaximumRolls() {
-		this.maximumRolls = 1;
-	}
 	
 	/**
 	 * THis is the getter for maxiumRolls and is used primarily for testing the default and secondary constructors
@@ -61,7 +62,6 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @see Player#takeTurn()
 	 */	
 	public void takeTurn() {				
-		
 		for (int counter = 0; counter < this.maximumRolls; counter++) {
 			super.takeTurn();
 		}

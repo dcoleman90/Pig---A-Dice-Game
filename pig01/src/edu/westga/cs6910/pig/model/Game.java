@@ -98,7 +98,6 @@ public class Game implements Observable {
 	 */
 	public void hold() {
 		this.swapWhoseTurn();
-
 		this.isGameOver();
 	}
 
