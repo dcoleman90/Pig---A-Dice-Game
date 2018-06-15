@@ -6,6 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 class TestWhenTakeTurnResetTurn {
 
@@ -19,12 +20,13 @@ class TestWhenTakeTurnResetTurn {
 	 */
 	@Test
 	void testParametersOfTakeTurnByInsuringResetTurnTotalIsCalledWhenA1IsRolled() {
-		ComputerPlayer drew = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer toshiba = new ComputerPlayer(nervious);
 		for (int count = 0; count < 1000; count++) {
-			drew.takeTurn();
-			if (drew.getDie1Result() == 1 || drew.getDie2Result() == 1) {
-				while (drew.getTurnTotal() != 0) {
-					fail("Test the computer players turn after a one was rolled was not equal to zero| Turn was equal to: " + drew.getTurnTotal());
+			toshiba.takeTurn();
+			if (toshiba.getDie1Result() == 1 || toshiba.getDie2Result() == 1) {
+				while (toshiba.getTurnTotal() != 0) {
+					fail("Test the computer players turn after a one was rolled was not equal to zero| Turn was equal to: " + toshiba.getTurnTotal());
 				}
 			}
 		}

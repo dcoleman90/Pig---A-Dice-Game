@@ -1,5 +1,7 @@
 package edu.westga.cs6910.pig.model;
 
+import edu.westga.cs6910.pig.model.strategies.PigStrategy;
+
 /**
  * ComputerPlayer represents a very simple automated player in the game Pig.
  * It rolls exactly 1 time and then holds.
@@ -12,16 +14,20 @@ package edu.westga.cs6910.pig.model;
 public class ComputerPlayer extends AbstractPlayer {
 	
 	private static final String NAME = "Simple Computer";
-	
+	private PigStrategy strategy;
 	private String name;
 	private int maximumRolls;
 	
 	/**
 	 * Creates a new ComputerPlayer with the specified name.
-	 * 
+	 * @param acceptedStrategy is the logic the ComputerPlayer will use to play the game
 	 */
-	public ComputerPlayer() {
+	public ComputerPlayer(PigStrategy acceptedStrategy) {
 		super();
+		if (acceptedStrategy == null) {
+			throw new IllegalArgumentException("Invalid Strategy");
+		}
+		this.strategy = acceptedStrategy;
 		this.name = NAME;
 	}
 

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 class TestComputerPlayerGetName {
 
@@ -13,7 +14,8 @@ class TestComputerPlayerGetName {
 	 */
 	@Test
 	void testGetNameMethodWithNameSimpleComputer() {
-		ComputerPlayer earthling = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer earthling = new ComputerPlayer(nervious);
 		assertEquals("Simple Computer", earthling.getName());
 	}
 }

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 class TestWhenGetTotal {
 
@@ -12,7 +13,8 @@ class TestWhenGetTotal {
 	 */
 	@Test
 	void testConstructedTotalResultsIn0() {
-		ComputerPlayer acer = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer acer = new ComputerPlayer(nervious);
 		assertEquals(0, acer.getTotal());
 	}
 

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 class TestWhenMaxiumRolls {
 
@@ -12,7 +13,8 @@ class TestWhenMaxiumRolls {
 	 */
 	@Test
 	void testGetMaxiumRollsDefaultShouldReturn1() {
-		ComputerPlayer alien = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer alien = new ComputerPlayer(nervious);
 		alien.setMaximumRolls();
 		assertEquals(1, alien.getMaxiumRolls());
 	}
@@ -22,7 +24,8 @@ class TestWhenMaxiumRolls {
 	 */
 	@Test
 	void testGetMaiumRollsWithAValueOf5() {
-		ComputerPlayer alien = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer alien = new ComputerPlayer(nervious);
 		alien.setMaximumRolls(5);
 		assertEquals(5, alien.getMaxiumRolls());
 	}
@@ -32,7 +35,8 @@ class TestWhenMaxiumRolls {
 	 */
 	@Test
 	void testGetMaiumRollsWithAValueOf17() {
-		ComputerPlayer alien = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer alien = new ComputerPlayer(nervious);
 		alien.setMaximumRolls(17);
 		assertEquals(17, alien.getMaxiumRolls());
 	}
@@ -43,7 +47,8 @@ class TestWhenMaxiumRolls {
 	 */
 	@Test
 	void testGetMaiumRollsWithAValueOf500() {
-		ComputerPlayer alien = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer alien = new ComputerPlayer(nervious);
 		alien.setMaximumRolls(500);
 		assertEquals(500, alien.getMaxiumRolls());
 	}

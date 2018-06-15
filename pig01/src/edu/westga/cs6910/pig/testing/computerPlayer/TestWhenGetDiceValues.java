@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 class TestWhenGetDiceValues {
 
@@ -14,7 +15,8 @@ class TestWhenGetDiceValues {
 	 */
 	@Test
 	void testGetDiceValuesIsCalledAfterConstructionBothDiceAreSetAt1() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		assertEquals("1, 1", dell.getDiceValues());
 	}
 
