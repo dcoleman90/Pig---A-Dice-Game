@@ -67,10 +67,6 @@ public class PigPane extends BorderPane {
 		this.setTop(pigMenuBar);
 	}
 	
-	private void cautiousStrategy() {
-		
-	}
-
 	private void addFirstPlayerChooserPane(Game theGame) {
 		HBox topBox = new HBox();
 		topBox.getStyleClass().add("pane-border");
