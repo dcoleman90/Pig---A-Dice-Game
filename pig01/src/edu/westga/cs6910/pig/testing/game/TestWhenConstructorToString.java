@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 class TestWhenConstructorToString {
 
@@ -19,7 +20,8 @@ class TestWhenConstructorToString {
 	 */
 	@Test
 	void testConstructorToStringByComparingToExpectedDefaultResult() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		assertEquals("Goal Score: 100" + System.getProperty("line.separator") + "Wayne: 0"
@@ -35,7 +37,8 @@ class TestWhenConstructorToString {
 	 */
 	@Test
 	void testConstructorToStringByComparingToExpectedResult() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		wayne.setTotal(99);
@@ -53,7 +56,8 @@ class TestWhenConstructorToString {
 	 */
 	@Test
 	void testConstructorToStringByComparingToExpectedResultWhenAPlayerWins() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		wayne.setTotal(109);

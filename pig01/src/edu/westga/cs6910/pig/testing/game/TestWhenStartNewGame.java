@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 class TestWhenStartNewGame {
 
@@ -13,7 +14,8 @@ class TestWhenStartNewGame {
 	 */
 	@Test
 	void testNewGameStartedPassedInPlayerIsHumanWayne() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		risk.startNewGame(wayne);
@@ -25,7 +27,8 @@ class TestWhenStartNewGame {
 	 */
 	@Test
 	void testNewGameStartedPassedInPlayerIsComputer() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		risk.startNewGame(dell);
@@ -37,7 +40,8 @@ class TestWhenStartNewGame {
 	 */
 	@Test
 	void testNewGameStartedDicePairIsStarted() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		risk.startNewGame(wayne);

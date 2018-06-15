@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 class TestWhenIsGameOver {
 
@@ -14,7 +15,8 @@ class TestWhenIsGameOver {
 	 */
 	@Test
 	void testIsGameOverByCheckingTrueWhenCalledBeforeStartGameAsTheValueIsNull() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		dell.setTotal(15);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
@@ -26,7 +28,8 @@ class TestWhenIsGameOver {
 	 */
 	@Test
 	void testIsGameOverByCheckingCurrentPlayerObjectValueIsOver100ReturnTrue() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		dell.setTotal(105);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
@@ -39,7 +42,8 @@ class TestWhenIsGameOver {
 	 */
 	@Test
 	void testIsGameOverByCheckingCurrentPlayerObjectValueIsEqualTo100ReturnTrue() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		dell.setTotal(100);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
@@ -52,7 +56,8 @@ class TestWhenIsGameOver {
 	 */
 	@Test
 	void testIsGameOverByCheckingCurrentPlayerObjectValueIsBelow100ReturnFalse() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		dell.setTotal(15);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
@@ -65,7 +70,8 @@ class TestWhenIsGameOver {
 	 */
 	@Test
 	void testIsGameOverByCheckingCurrentPlayerObjectValueHasNotBeenSet() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		risk.startNewGame(dell);

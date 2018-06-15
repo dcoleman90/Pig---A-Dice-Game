@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 
 class TestWhenHold {
 
@@ -16,7 +17,8 @@ class TestWhenHold {
 	 */
 	@Test
 	void testHoldCurrentPlayerSwitchesPlayerExpectedHumanPlayer() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		risk.setTheComputer(dell);
@@ -30,7 +32,8 @@ class TestWhenHold {
 	 */
 	@Test
 	void testHoldCurrentPlayerResetTurnTotalTo0() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		risk.setCurrentPlayerObjectToComputer(dell);
@@ -44,7 +47,8 @@ class TestWhenHold {
 	 */
 	@Test
 	void testHoldCurrentPlayerSwitchesPlayerExpectedComputerPlayer() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		risk.setCurrentPlayerObjectToHuman(wayne);
@@ -58,7 +62,8 @@ class TestWhenHold {
 	 */
 	@Test
 	void testHoldCurrentComputerPlayerResetTurnTotalTo0() {
-		ComputerPlayer dell = new ComputerPlayer();
+		CautiousStrategy nervious = new CautiousStrategy();
+		ComputerPlayer dell = new ComputerPlayer(nervious);
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		risk.setTheHuman(wayne);
