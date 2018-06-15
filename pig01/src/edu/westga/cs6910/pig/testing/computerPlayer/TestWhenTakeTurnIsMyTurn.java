@@ -1,4 +1,4 @@
-package edu.westga.cs6910.testing.computerPlayer;
+package edu.westga.cs6910.pig.testing.computerPlayer;
 
 import static org.junit.Assert.fail;
 
