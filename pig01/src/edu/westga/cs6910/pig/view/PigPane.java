@@ -53,18 +53,22 @@ public class PigPane extends BorderPane {
 
 	private void createMenuBar() {
     	MenuBar pigMenuBar = new MenuBar();
-		Menu pigFile = new Menu("_File");
+		Menu pigFile = new Menu(" File");
 		pigFile.setMnemonicParsing(true);
-		MenuItem exitPigGame = new MenuItem("E_xit");
+		MenuItem exitPigGame = new MenuItem(" Exit");
 		exitPigGame.setMnemonicParsing(true);
 		exitPigGame.setOnAction(actionEvent -> System.exit(0));
 		pigFile.getItems().add(exitPigGame);
 		
-		Menu pigStrategy = new Menu("_Strategy");
+		Menu pigStrategy = new Menu(" Strategy");
 		pigStrategy.setMnemonicParsing(true);
 
 		pigMenuBar.getMenus().addAll(pigFile, pigStrategy);
 		this.setTop(pigMenuBar);
+	}
+	
+	private void cautiousStrategy() {
+		
 	}
 
 	private void addFirstPlayerChooserPane(Game theGame) {
@@ -133,10 +137,6 @@ public class PigPane extends BorderPane {
 			newGameSelector.getChildren().add(this.radHumanPlayer);
 			newGameSelector.getChildren().add(this.radComputerPlayer);
 			this.getChildren().add(newGameSelector);
-
-		}
-
-		private void buildMenuPane() {
 
 		}
 
