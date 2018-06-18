@@ -27,12 +27,12 @@ class TestRollAgain {
 	}
 	
 	/**
-	 * This test insure that the rollAgain returns false when presented with under 2 and less than 10 
+	 * This test insure that the rollAgain returns false when presented with under 1 and less than 10 
 	 */
 	@Test
 	void testCautiousStrategyRollAgainShouldNotTriggerExpectFalse() {
 		CautiousStrategy careful = new CautiousStrategy();
-		assertEquals(false, careful.rollAgain(1, 8, 1));
+		assertEquals(false, careful.rollAgain(0, 8, 1));
 	}
 
 }

@@ -26,6 +26,6 @@ public class CautiousStrategy implements PigStrategy {
 	 *         The cautious strategy does not care about the pointsDifference
 	 */
 	public boolean rollAgain(int rollTaken, int pointsRolled, int pointDifferance) {
-		return rollTaken == 2 || pointsRolled >= 10;
+		return rollTaken >=  1;
 	}
 }

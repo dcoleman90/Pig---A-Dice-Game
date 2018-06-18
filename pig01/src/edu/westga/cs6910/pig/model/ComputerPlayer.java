@@ -11,7 +11,7 @@ import edu.westga.cs6910.pig.model.strategies.PigStrategy;
  * @author Drew Coleman
  * @version 06/05/2018
  */
-public class ComputerPlayer extends AbstractPlayer {
+public class ComputerPlayer extends AbstractPlayer implements PigStrategy {
 
 	private static final String NAME = "Simple Computer";
 	private PigStrategy strategy;
@@ -37,6 +37,7 @@ public class ComputerPlayer extends AbstractPlayer {
 
 	// *************************** mutator methods ****************************
 
+	
 	/**
 	 * Implements Player's setMaximumRolls() to set the maximum number of rolls to 1
 	 * 
@@ -81,8 +82,8 @@ public class ComputerPlayer extends AbstractPlayer {
 	 */
 	public void takeTurn() {
 		int pointNeededToWin = (100 - this.getTotal());
-		this.numOfTurnsTaken++;
-		if (this.strategy.rollAgain(this.numOfTurnsTaken, this.getTurnTotal(), pointNeededToWin)) {
+		if (this.rollAgain(this.numOfTurnsTaken, this.getTurnTotal(), pointNeededToWin)) {
+			this.numOfTurnsTaken++;
 			return;
 		} else {
 			super.takeTurn();
@@ -97,5 +98,10 @@ public class ComputerPlayer extends AbstractPlayer {
 	 */
 	public String getName() {
 		return this.name;
+	}
+
+	@Override
+	public boolean rollAgain(int rollTaken, int pointsRolled, int pointDifferance) {
+		return this.strategy.rollAgain(rollTaken, pointsRolled, pointDifferance);
 	}
 }

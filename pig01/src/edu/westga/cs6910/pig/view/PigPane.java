@@ -1,7 +1,9 @@
 package edu.westga.cs6910.pig.view;
 
+import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
+import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -62,10 +64,26 @@ public class PigPane extends BorderPane {
 		
 		Menu pigStrategy = new Menu(" Strategy");
 		pigStrategy.setMnemonicParsing(true);
-
+		MenuItem cautiousStrategy = new MenuItem( "Cautious");
+		cautiousStrategy.setMnemonicParsing(true);
+		cautiousStrategy.setOnAction(actionEvent -> new SetCautiousListener());///////HELLP
+		pigStrategy.getItems().add(cautiousStrategy);
 		pigMenuBar.getMenus().addAll(pigFile, pigStrategy);
 		this.setTop(pigMenuBar);
 	}
+	
+	private class SetCautiousListener implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent playStyle) {
+			CautiousStrategy carefulPlay = new CautiousStrategy();
+			ComputerPlayer cautious = new ComputerPlayer(carefulPlay);
+			PigPane.this.theGame.setTheComputer(cautious);
+			
+		}
+		
+	}
+
 	
 	private void addFirstPlayerChooserPane(Game theGame) {
 		HBox topBox = new HBox();
@@ -135,7 +153,7 @@ public class PigPane extends BorderPane {
 			this.getChildren().add(newGameSelector);
 
 		}
-
+		
 		/*
 		 * Defines the listener for computer player first button.
 		 */
