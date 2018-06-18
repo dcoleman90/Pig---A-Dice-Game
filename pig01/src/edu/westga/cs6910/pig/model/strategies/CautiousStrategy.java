@@ -20,9 +20,7 @@ public class CautiousStrategy implements PigStrategy {
 	 *            total score
 	 * @return true if player should roll false if they should hold
 	 * 
-	 *         The cautious strategy is to return stop rolling if pointsRolled >=10
-	 *         rolledTaken > = 2
-	 * 
+	 *         The cautious strategy is to return stop rolling after one roll (or rollTake is >=1) 
 	 *         The cautious strategy does not care about the pointsDifference
 	 */
 	public boolean rollAgain(int rollTaken, int pointsRolled, int pointDifferance) {
