@@ -64,9 +64,9 @@ public class PigPane extends BorderPane {
 		
 		Menu pigStrategy = new Menu(" Strategy");
 		pigStrategy.setMnemonicParsing(true);
-		MenuItem cautiousStrategy = new MenuItem( "Cautious");
+		MenuItem cautiousStrategy = new MenuItem("Cautious");
 		cautiousStrategy.setMnemonicParsing(true);
-		cautiousStrategy.setOnAction(actionEvent -> new SetCautiousListener());///////HELLP
+		cautiousStrategy.setOnAction(actionEvent -> new SetCautiousListener());
 		pigStrategy.getItems().add(cautiousStrategy);
 		pigMenuBar.getMenus().addAll(pigFile, pigStrategy);
 		this.setTop(pigMenuBar);
@@ -84,7 +84,6 @@ public class PigPane extends BorderPane {
 		
 	}
 
-	
 	private void addFirstPlayerChooserPane(Game theGame) {
 		HBox topBox = new HBox();
 		topBox.getStyleClass().add("pane-border");

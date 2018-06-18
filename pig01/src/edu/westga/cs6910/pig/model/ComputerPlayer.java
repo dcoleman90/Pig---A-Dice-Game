@@ -37,7 +37,6 @@ public class ComputerPlayer extends AbstractPlayer implements PigStrategy {
 
 	// *************************** mutator methods ****************************
 
-	
 	/**
 	 * Implements Player's setMaximumRolls() to set the maximum number of rolls to 1
 	 * 
@@ -70,6 +69,7 @@ public class ComputerPlayer extends AbstractPlayer implements PigStrategy {
 	/**
 	 * This getter method returns the number value of this.numOfTurnsTaken which
 	 * equals to the amount of times takeTurn() method was called
+	 * 
 	 * @return this.numOfTurnsTaken
 	 */
 	public int getNumOfTurnsTaken() {
