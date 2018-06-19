@@ -95,14 +95,12 @@ public class ComputerPlayer extends AbstractPlayer {
 	public void takeTurn() {
 		super.takeTurn();
 		super.setIsMyTurnFalse();
-		System.out.println("max " + this.maximumRolls + " turnsLeft " + turnsRemaining + " " + (100 - this.getTotal()));
 		if (this.strategy.rollAgain(this.turnsRemaining, this.getTurnTotal(), 100 - this.getTotal())) {
-			System.out.println("max " + this.maximumRolls + " turnsLeft " + this.turnsRemaining + " " + (100 - this.getTotal()));
 			this.turnsRemaining++;
 			this.takeTurn();
 		}
+		this.turnsRemaining = 0;
 	}
-
 
 	// *************************** accessor methods ****************************
 	@Override

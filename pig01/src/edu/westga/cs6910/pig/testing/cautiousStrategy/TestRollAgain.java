@@ -9,25 +9,25 @@ import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 class TestRollAgain {
 
 	/**
-	 * This test insure that the rollAgain returns true when presented with 2 for number of times rolled
+	 * This test insure that the rollAgain returns false regardless of input
 	 */
 	@Test
 	void testCautiousStrategyRollAgainAfterRolling2TimesExpectTrue() {
 		CautiousStrategy careful = new CautiousStrategy();
-		assertEquals(true, careful.rollAgain(2, 5, 99));
+		assertEquals(false, careful.rollAgain(2, 5, 99));
 	}
 	
 	/**
-	 * This test insure that the rollAgain returns true when presented with 2 for number of times rolled
+	 * This test insure that the rollAgain returns false regardless of input
 	 */
 	@Test
 	void testCautiousStrategyRollAgainAfterAmountGainedIs10TimesExpectTrue() {
 		CautiousStrategy careful = new CautiousStrategy();
-		assertEquals(true, careful.rollAgain(1, 10, 99));
+		assertEquals(false, careful.rollAgain(1, 10, 99));
 	}
 	
 	/**
-	 * This test insure that the rollAgain returns false when presented with under 1 and less than 10 
+	 * This test insure that the rollAgain returns false regardless of input
 	 */
 	@Test
 	void testCautiousStrategyRollAgainShouldNotTriggerExpectFalse() {
