@@ -17,7 +17,6 @@ public class ComputerPlayer extends AbstractPlayer {
 	private PigStrategy strategy;
 	private String name;
 	private int maximumRolls;
-//	private int numOfTurnsTaken;
 
 	/**
 	 * Creates a new ComputerPlayer with the specified name.
@@ -32,7 +31,6 @@ public class ComputerPlayer extends AbstractPlayer {
 		}
 		this.strategy = acceptedStrategy;
 		this.name = NAME;
-//		this.numOfTurnsTaken = 0;
 	}
 
 	// *************************** mutator methods ****************************
@@ -78,27 +76,23 @@ public class ComputerPlayer extends AbstractPlayer {
 		}
 		this.strategy = acceptedStrategy;
 	}
-
-//	/**
-//	 * This getter method returns the number value of this.numOfTurnsTaken which
-//	 * equals to the amount of times takeTurn() method was called
-//	 * 
-//	 * @return this.numOfTurnsTaken
-//	 */
-//	public int getNumOfTurnsTaken() {
-//		return this.numOfTurnsTaken;
-//	}
+	
+	/**
+	 * THe getter for this.strategy
+	 * @return this.strategy
+	 */
+	public PigStrategy getComputerStrategy() {
+		return this.strategy;
+	}
 
 	@Override
 	/**
 	 * @see Player#takeTurn()
 	 */
 	public void takeTurn() {				
-//		for (int counter = 0; counter < this.maximumRolls; counter++) {
-//			super.takeTurn();
-//		}
 		int numOfTurnsTaken = 0;
-		while (!this.strategy.rollAgain(numOfTurnsTaken, this.getTurnTotal(), 100 - this.getTurnTotal())) {
+		
+		while (!this.strategy.rollAgain(numOfTurnsTaken, this.getTurnTotal(), 100 - this.getTotal())) {
 			numOfTurnsTaken++;
 			super.takeTurn();
 		}
