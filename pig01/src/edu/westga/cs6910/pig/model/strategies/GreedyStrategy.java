@@ -22,7 +22,23 @@ public class GreedyStrategy implements PigStrategy {
 	 * 
 	 *         The cautious strategy does not care about the pointsDifference
 	 */
-	public boolean rollAgain(int rollTaken, int pointsRolled, int pointDifferance) {
-		return rollTaken >= 3 || pointDifferance <= 0;
-	}
-}
+//	public boolean rollAgain(int rollTaken, int pointsRolled, int pointDifferance) {
+//		return rollTaken >= 3 || pointDifferance <= 0;
+//	}
+//}
+
+	public boolean rollAgain(int rolls, int points, int totalPoints) {
+    	int count;
+		if (rolls > 2) {
+			count = rolls - 3;
+		} else {
+			count = 0;
+		}
+		while (totalPoints < 100) {
+			if (count < rolls) {
+				count++;
+				return true;
+			}
+		}
+		return false;
+	}}

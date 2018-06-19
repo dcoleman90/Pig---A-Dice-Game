@@ -108,4 +108,14 @@ public abstract class AbstractPlayer implements Player {
 	public void setTotal(int newTotal) {
 		this.total = newTotal;
 	}
+
+	/**
+	 * This method is used for testing and Sets the Turn Total at the accepted value
+	 * @param  newTurnTotal is the value this.turnTotal will be set too
+	 * only to be used when testing
+	 */
+	public void setTurnTotal(int newTurnTotal) {
+		this.turnTotal = newTurnTotal;
+	}
+
 }

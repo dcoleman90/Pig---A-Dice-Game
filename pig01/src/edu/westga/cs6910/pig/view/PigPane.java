@@ -47,10 +47,10 @@ public class PigPane extends BorderPane {
 
 		this.pnContent = new BorderPane();
 		this.createMenuBar();
-		this.addFirstPlayerChooserPane(theGame);
-		this.addHumanPlayerPane(theGame);
-		this.addStatusPane(theGame);
-		this.addComputerPlayerPane(theGame);
+		this.addFirstPlayerChooserPane(this.theGame);
+		this.addHumanPlayerPane(this.theGame);
+		this.addStatusPane(this.theGame);
+		this.addComputerPlayerPane(this.theGame);
 		this.setCenter(this.pnContent);
 	}
 
@@ -100,8 +100,8 @@ public class PigPane extends BorderPane {
 		@Override
 		public void handle(ActionEvent playStyle) {
 			GreedyStrategy greedyPlay = new GreedyStrategy();
-			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(greedyPlay);
-			
+			//PigPane.this.theGame.getComputerPlayer().setComputerStrategy(greedyPlay);
+			PigPane.this.pnComputerPlayer.getTheComputer().setComputerStrategy(greedyPlay);
 		}	
 	}
 	
