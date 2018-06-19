@@ -1,10 +1,10 @@
 package edu.westga.cs6910.pig.view;
 
-import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
+import edu.westga.cs6910.pig.model.strategies.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -65,23 +65,32 @@ public class PigPane extends BorderPane {
 		
 		Menu pigStrategy = new Menu(" Strategy");
 		pigStrategy.setMnemonicParsing(true);
+		
 		MenuItem cautiousStrategy = new MenuItem("Cautious");
 		cautiousStrategy.setMnemonicParsing(true);
 		cautiousStrategy.setOnAction(new SetCautiousListener());
-		
-
-		
-		
-		
-		
+	
+		MenuItem randomStrategy = new MenuItem("Random");
+		randomStrategy.setMnemonicParsing(true);
+		randomStrategy.setOnAction(new SetRandomListener());
 		
 		MenuItem greedyStrategy = new MenuItem("Greedy");
 		greedyStrategy.setMnemonicParsing(true);
 		greedyStrategy.setOnAction(new SetGreedyListener());
 		
-		pigStrategy.getItems().addAll(cautiousStrategy, greedyStrategy);
+		pigStrategy.getItems().addAll(cautiousStrategy, randomStrategy, greedyStrategy);
 		pigMenuBar.getMenus().addAll(pigFile, pigStrategy);
 		this.setTop(pigMenuBar);
+	}
+	
+	private class SetRandomListener implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent playStyle) {
+			RandomStrategy randomPlay = new RandomStrategy();
+			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(randomPlay);
+			
+		}
 	}
 	
 	private class SetCautiousListener implements EventHandler<ActionEvent> {
@@ -100,7 +109,6 @@ public class PigPane extends BorderPane {
 		public void handle(ActionEvent playStyle) {
 			GreedyStrategy greedyPlay = new GreedyStrategy();
 			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(greedyPlay);
-			//PigPane.this.pnComputerPlayer.getTheComputer().setComputerStrategy(greedyPlay);
 		}	
 	}
 	
