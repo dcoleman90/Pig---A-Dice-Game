@@ -76,9 +76,10 @@ public class ComputerPlayer extends AbstractPlayer {
 		}
 		this.strategy = acceptedStrategy;
 	}
-	
+
 	/**
 	 * THe getter for this.strategy
+	 * 
 	 * @return this.strategy
 	 */
 	public PigStrategy getComputerStrategy() {
@@ -89,17 +90,20 @@ public class ComputerPlayer extends AbstractPlayer {
 	/**
 	 * @see Player#takeTurn()
 	 */
-	public void takeTurn() {				
-		int numOfTurnsTaken = 0;
-		
-		while (!this.strategy.rollAgain(numOfTurnsTaken, this.getTurnTotal(), 100 - this.getTotal())) {
-			numOfTurnsTaken++;
+	public void takeTurn() {
+		super.takeTurn();
+		int turnsLeft = this.maximumRolls--;
+		super.setIsMyTurnFalse();
+		if (this.strategy.rollAgain(turnsLeft, 
+			this.getTurnTotal(), 100 - this.getTotal())) {
 			super.takeTurn();
+			turnsLeft--;
+			super.setIsMyTurnFalse();
 		}
 	}
 
-	// *************************** accessor methods ****************************
 
+	// *************************** accessor methods ****************************
 	@Override
 	/**
 	 * @see Player#getName()

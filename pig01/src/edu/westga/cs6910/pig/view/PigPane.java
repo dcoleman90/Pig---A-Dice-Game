@@ -45,9 +45,9 @@ public class PigPane extends BorderPane {
 	public PigPane(Game theGame) {
 		this.theGame = theGame;
 
-		this.pnContent = new BorderPane();
-		this.createMenuBar();
+		this.pnContent = new BorderPane();		
 		this.addFirstPlayerChooserPane(this.theGame);
+		this.createMenuBar();
 		this.addHumanPlayerPane(this.theGame);
 		this.addStatusPane(this.theGame);
 		this.addComputerPlayerPane(this.theGame);
@@ -67,8 +67,8 @@ public class PigPane extends BorderPane {
 		pigStrategy.setMnemonicParsing(true);
 		MenuItem cautiousStrategy = new MenuItem("Cautious");
 		cautiousStrategy.setMnemonicParsing(true);
-		cautiousStrategy.setOnAction(actionEvent -> new SetCautiousListener());
-		pigStrategy.getItems().add(cautiousStrategy);
+		cautiousStrategy.setOnAction(new SetCautiousListener());
+		
 
 		
 		
@@ -77,9 +77,9 @@ public class PigPane extends BorderPane {
 		
 		MenuItem greedyStrategy = new MenuItem("Greedy");
 		greedyStrategy.setMnemonicParsing(true);
-		greedyStrategy.setOnAction(actionEvent -> new SetGreedyListener());
-		pigStrategy.getItems().add(greedyStrategy);
-
+		greedyStrategy.setOnAction(new SetGreedyListener());
+		
+		pigStrategy.getItems().addAll(cautiousStrategy, greedyStrategy);
 		pigMenuBar.getMenus().addAll(pigFile, pigStrategy);
 		this.setTop(pigMenuBar);
 	}
@@ -89,8 +89,7 @@ public class PigPane extends BorderPane {
 		@Override
 		public void handle(ActionEvent playStyle) {
 			CautiousStrategy carefulPlay = new CautiousStrategy();
-			ComputerPlayer cautious = new ComputerPlayer(carefulPlay);
-			PigPane.this.theGame.setTheComputer(cautious);
+			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(carefulPlay);
 			
 		}
 		
@@ -100,8 +99,8 @@ public class PigPane extends BorderPane {
 		@Override
 		public void handle(ActionEvent playStyle) {
 			GreedyStrategy greedyPlay = new GreedyStrategy();
-			//PigPane.this.theGame.getComputerPlayer().setComputerStrategy(greedyPlay);
-			PigPane.this.pnComputerPlayer.getTheComputer().setComputerStrategy(greedyPlay);
+			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(greedyPlay);
+			//PigPane.this.pnComputerPlayer.getTheComputer().setComputerStrategy(greedyPlay);
 		}	
 	}
 	

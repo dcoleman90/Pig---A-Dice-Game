@@ -10,7 +10,9 @@ package edu.westga.cs6910.pig.model.strategies;
  */
 public class CautiousStrategy implements PigStrategy {
 
-	/**CautiousStrategy
+	/**
+	 * CautiousStrategy
+	 * 
 	 * @param rollTaken
 	 *            - how many times the dice have been rolled this turn
 	 * @param pointsRolled
@@ -20,10 +22,10 @@ public class CautiousStrategy implements PigStrategy {
 	 *            total score
 	 * @return true if player should roll false if they should hold
 	 * 
-	 *         The cautious strategy is to return stop rolling after one roll (or rollTake is >) 
-	 *         The cautious strategy does not care about the pointsDifference
+	 *         cautious strategy always returns false as if called it should NEVER
+	 *         be rolled again
 	 */
 	public boolean rollAgain(int rollTaken, int pointsRolled, int pointDifferance) {
-		return rollTaken >=  1;
+		return false;
 	}
 }

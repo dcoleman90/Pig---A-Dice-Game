@@ -13,7 +13,7 @@ public abstract class AbstractPlayer implements Player {
 	private int total;
 	private int turnTotal;
 	private boolean isMyTurn;
-	
+
 	/**
 	 * This is the constructor which will set up all identical player methods
 	 */
@@ -21,17 +21,17 @@ public abstract class AbstractPlayer implements Player {
 		this.thePair = new DicePair();
 		this.total = 0;
 	}
-	
+
 	@Override
 	/**
 	 * @see Player#takeTurn()
 	 */
-	public void takeTurn() {	
+	public void takeTurn() {
 		this.thePair.rollDice();
-		
+
 		int die1Value = this.thePair.getDie1Value();
 		int die2Value = this.thePair.getDie2Value();
-		if (die1Value == 1 || die2Value == 1) {	
+		if (die1Value == 1 || die2Value == 1) {
 			this.total = this.total - this.turnTotal;
 			this.isMyTurn = false;
 			this.resetTurnTotal();
@@ -41,7 +41,7 @@ public abstract class AbstractPlayer implements Player {
 			this.isMyTurn = true;
 		}
 	}
-	
+
 	@Override
 	/**
 	 * @see Player#getDiceValues()
@@ -49,20 +49,29 @@ public abstract class AbstractPlayer implements Player {
 	public String getDiceValues() {
 		return this.thePair.getDie1Value() + ", " + this.thePair.getDie2Value();
 	}
-	
+
 	@Override
 	/**
 	 * @see Player#resetTurnTotal()
-	 */	
+	 */
 	public void resetTurnTotal() {
 		this.turnTotal = 0;
 	}
-	
-	@Override	
+
+	@Override
 	/**
 	 * @see Player#getIsMyTurn()
 	 */
 	public boolean getIsMyTurn() {
+		return this.isMyTurn;
+	}
+
+	/**
+	 * this method sets isMyTurn value to false and returns it
+	 * @return isMyTurn set to false
+	 */
+	public boolean setIsMyTurnFalse() {
+		this.isMyTurn = false;
 		return this.isMyTurn;
 	}
 	
@@ -73,37 +82,41 @@ public abstract class AbstractPlayer implements Player {
 	public int getTotal() {
 		return this.total;
 	}
-	
-	@Override	
+
+	@Override
 	/**
 	 * @see Player#getTurnTotal()
 	 */
 	public int getTurnTotal() {
 		return this.turnTotal;
 	}
-	
+
 	/**
-	 * This method will return the value of the first die
-	 * it is used mostly for testing purposes
+	 * This method will return the value of the first die it is used mostly for
+	 * testing purposes
+	 * 
 	 * @return die 1 value
 	 */
 	public int getDie1Result() {
 		return this.thePair.getDie1Value();
 	}
-	
+
 	/**
-	 * This method will return the value of the second die
-	 * it is used mostly for testing purposes
+	 * This method will return the value of the second die it is used mostly for
+	 * testing purposes
+	 * 
 	 * @return die 2 value
 	 */
 	public int getDie2Result() {
 		return this.thePair.getDie2Value();
 	}
-	
+
 	/**
 	 * This method is used for testing and Sets the total at the accepted value
-	 * @param  newTotal is the value this.total will be set too
-	 * only to be used when testing
+	 * 
+	 * @param newTotal
+	 *            is the value this.total will be set too only to be used when
+	 *            testing
 	 */
 	public void setTotal(int newTotal) {
 		this.total = newTotal;
@@ -111,8 +124,10 @@ public abstract class AbstractPlayer implements Player {
 
 	/**
 	 * This method is used for testing and Sets the Turn Total at the accepted value
-	 * @param  newTurnTotal is the value this.turnTotal will be set too
-	 * only to be used when testing
+	 * 
+	 * @param newTurnTotal
+	 *            is the value this.turnTotal will be set too only to be used when
+	 *            testing
 	 */
 	public void setTurnTotal(int newTurnTotal) {
 		this.turnTotal = newTurnTotal;

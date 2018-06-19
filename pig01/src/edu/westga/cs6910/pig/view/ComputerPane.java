@@ -23,7 +23,6 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	private Label lblDiceValues;
 	private Label lblTurnTotal;
 	private Button btnTakeTurn;
-
 	private ComputerPlayer theComputer;
 	private Game theGame;
 
@@ -39,7 +38,6 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		this.theGame = theGame;
 		this.theGame.addListener(this);
 		this.theComputer = this.theGame.getComputerPlayer();
-
 		this.buildPane();
 	}
 
@@ -88,14 +86,13 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 			this.setDisable(true);
 			return;
 		}
-
-		boolean myTurn = this.theGame.getCurrentPlayer() == theComputer;
+		boolean isComputerTurn = this.theGame.getCurrentPlayer() == theComputer;
 		int turnTotal = this.theComputer.getTurnTotal();
 		String result = this.theComputer.getDiceValues();
 		this.lblDiceValues.setText(result);
 		this.lblTurnTotal.setText("" + turnTotal);
+		this.setDisable(!isComputerTurn);
 
-		this.setDisable(!myTurn);
 	}
 
 	/*
@@ -112,10 +109,8 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		@Override
 		public void handle(ActionEvent arg0) {
 			if (!ComputerPane.this.theGame.isGameOver()) {
+				ComputerPane.this.theGame.getComputerPlayer().setMaximumRolls(3);
 				ComputerPane.this.theGame.play();
-			}
-			if (!ComputerPane.this.theGame.isGameOver()) {
-				ComputerPane.this.theGame.hold();
 			}
 		}
 	}
