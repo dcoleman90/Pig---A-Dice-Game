@@ -44,8 +44,8 @@ class TestWhenTakeTurnIsMyTurn {
 		for (int count = 0; count < 1000; count++) {
 			acer.takeTurn();
 			if (acer.getDie1Result() != 1 && acer.getDie2Result() != 1) {
-				while (!acer.getIsMyTurn()) {
-					fail("Test remained false when numbers other than one where rolled: Die 1: " + acer.getDie1Result()
+				while (acer.getIsMyTurn()) {
+					fail("Test remained false as the cautiousComputer ALWAYS returns false where rolled: Die 1: " + acer.getDie1Result()
 							+ " Die 2: " + acer.getDie2Result());
 				}
 			}

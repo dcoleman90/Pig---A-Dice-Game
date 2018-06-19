@@ -22,6 +22,7 @@ class TestWhenHold {
 		HumanPlayer wayne = new HumanPlayer("Wayne");
 		Game risk = new Game(wayne, dell);
 		risk.setTheComputer(dell);
+		risk.setCurrentPlayerObjectToComputer(dell);
 		risk.hold();
 		assertEquals(wayne, risk.getCurrentPlayer());
 	}
