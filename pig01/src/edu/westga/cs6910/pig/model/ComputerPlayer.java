@@ -11,7 +11,7 @@ import edu.westga.cs6910.pig.model.strategies.PigStrategy;
  * @author Drew Coleman
  * @version 06/05/2018
  */
-public class ComputerPlayer extends AbstractPlayer implements PigStrategy {
+public class ComputerPlayer extends AbstractPlayer {
 
 	private static final String NAME = "Simple Computer";
 	private PigStrategy strategy;
@@ -76,16 +76,27 @@ public class ComputerPlayer extends AbstractPlayer implements PigStrategy {
 		return this.numOfTurnsTaken;
 	}
 
+	/**
+	 * This method will set the Computer Strategy to a new one
+	 * 
+	 * @param acceptedStrategy
+	 *            this is the new PigStrategy for the computerPlayer
+	 */
+	public void setComputerStrategy(PigStrategy acceptedStrategy) {
+		if (acceptedStrategy == null) {
+			throw new IllegalArgumentException("Invalid Strategy");
+		}
+		this.strategy = acceptedStrategy;
+	}
+
 	@Override
 	/**
 	 * @see Player#takeTurn()
 	 */
 	public void takeTurn() {
-		int pointNeededToWin = (100 - this.getTotal());
-		if (this.rollAgain(this.numOfTurnsTaken, this.getTurnTotal(), pointNeededToWin)) {
+		super.takeTurn();
+		if (this.strategy.rollAgain(this.numOfTurnsTaken, this.getTurnTotal(), 100 - this.getTotal())) {
 			this.numOfTurnsTaken++;
-			return;
-		} else {
 			super.takeTurn();
 		}
 	}
@@ -98,10 +109,5 @@ public class ComputerPlayer extends AbstractPlayer implements PigStrategy {
 	 */
 	public String getName() {
 		return this.name;
-	}
-
-	@Override
-	public boolean rollAgain(int rollTaken, int pointsRolled, int pointDifferance) {
-		return this.strategy.rollAgain(rollTaken, pointsRolled, pointDifferance);
 	}
 }

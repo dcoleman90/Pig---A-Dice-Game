@@ -4,6 +4,7 @@ import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
+import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
@@ -68,6 +69,17 @@ public class PigPane extends BorderPane {
 		cautiousStrategy.setMnemonicParsing(true);
 		cautiousStrategy.setOnAction(actionEvent -> new SetCautiousListener());
 		pigStrategy.getItems().add(cautiousStrategy);
+
+		
+		
+		
+		
+		
+		MenuItem greedyStrategy = new MenuItem("Greedy");
+		greedyStrategy.setMnemonicParsing(true);
+		greedyStrategy.setOnAction(actionEvent -> new SetGreedyListener());
+		pigStrategy.getItems().add(greedyStrategy);
+
 		pigMenuBar.getMenus().addAll(pigFile, pigStrategy);
 		this.setTop(pigMenuBar);
 	}
@@ -83,7 +95,16 @@ public class PigPane extends BorderPane {
 		}
 		
 	}
-
+	
+	private class SetGreedyListener implements EventHandler<ActionEvent> {
+		@Override
+		public void handle(ActionEvent playStyle) {
+			GreedyStrategy greedyPlay = new GreedyStrategy();
+			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(greedyPlay);
+			
+		}	
+	}
+	
 	private void addFirstPlayerChooserPane(Game theGame) {
 		HBox topBox = new HBox();
 		topBox.getStyleClass().add("pane-border");

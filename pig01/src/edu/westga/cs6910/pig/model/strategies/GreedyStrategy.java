@@ -1,16 +1,13 @@
 package edu.westga.cs6910.pig.model.strategies;
 
-/**
- * This class will implement PigStrategy and use a cautious approach to win the
- * game
- * 
+/** This Strategy will cause the computerPlayer to Roll 4 times or try for 30 points in one round
  * @author Drew Coleman
- * @version 06/15/2018
+ * @version 06/18/2018
  *
  */
-public class CautiousStrategy implements PigStrategy {
+public class GreedyStrategy implements PigStrategy {
 
-	/**CautiousStrategy
+	/**GreedyStrategy
 	 * @param rollTaken
 	 *            - how many times the dice have been rolled this turn
 	 * @param pointsRolled
@@ -20,10 +17,12 @@ public class CautiousStrategy implements PigStrategy {
 	 *            total score
 	 * @return true if player should roll false if they should hold
 	 * 
-	 *         The cautious strategy is to return stop rolling after one roll (or rollTake is >) 
+	 *         The cautious strategy is to return stop rolling if 
+	 *         rolledTaken > = 4 or the game is one (pointsDifferences is less or equal to 0)
+	 * 
 	 *         The cautious strategy does not care about the pointsDifference
 	 */
 	public boolean rollAgain(int rollTaken, int pointsRolled, int pointDifferance) {
-		return rollTaken >=  1;
+		return rollTaken >= 3 || pointDifferance <= 0;
 	}
 }
