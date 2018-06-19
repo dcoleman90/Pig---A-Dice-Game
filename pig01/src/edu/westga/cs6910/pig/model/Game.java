@@ -178,12 +178,12 @@ public class Game implements Observable {
 	// ************************ private helper method *************************
 	private void swapWhoseTurn() {
 
-		if (this.currentPlayerObject.getValue() == this.theHuman) {
-			this.currentPlayerObject.setValue(this.theComputer);
-			this.theComputer.resetTurnTotal();
-		} else {
+		if (this.currentPlayerObject.getValue() == this.theComputer) {
 			this.currentPlayerObject.setValue(this.theHuman);
-			this.theHuman.resetTurnTotal();
+		} else {
+			this.currentPlayerObject.getValue().resetTurnTotal();
+			this.currentPlayerObject.setValue(this.theComputer);
+			this.currentPlayerObject.getValue().resetTurnTotal();
 		}
 	}
 

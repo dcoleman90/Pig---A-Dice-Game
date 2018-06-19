@@ -11,7 +11,8 @@ import edu.westga.cs6910.pig.model.strategies.RandomStrategy;
  * different test will help insure that everything is staying within a certain
  * margin of error
  * 
- * @author Drewc
+ * @author Drew Coleman
+ * @version 06/19/18
  *
  */
 class TestRollAgain {

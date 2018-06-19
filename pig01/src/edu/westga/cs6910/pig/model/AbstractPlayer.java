@@ -56,6 +56,7 @@ public abstract class AbstractPlayer implements Player {
 	 */
 	public void resetTurnTotal() {
 		this.turnTotal = 0;
+		this.setIsMyTurnFalse();
 	}
 
 	@Override

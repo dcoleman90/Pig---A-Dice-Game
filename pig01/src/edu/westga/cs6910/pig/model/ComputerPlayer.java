@@ -17,6 +17,7 @@ public class ComputerPlayer extends AbstractPlayer {
 	private PigStrategy strategy;
 	private String name;
 	private int maximumRolls;
+	private int turnsRemaining;
 
 	/**
 	 * Creates a new ComputerPlayer with the specified name.
@@ -31,6 +32,7 @@ public class ComputerPlayer extends AbstractPlayer {
 		}
 		this.strategy = acceptedStrategy;
 		this.name = NAME;
+		this.turnsRemaining = 0;
 	}
 
 	// *************************** mutator methods ****************************
@@ -92,13 +94,12 @@ public class ComputerPlayer extends AbstractPlayer {
 	 */
 	public void takeTurn() {
 		super.takeTurn();
-		int turnsLeft = this.maximumRolls--;
 		super.setIsMyTurnFalse();
-		if (this.strategy.rollAgain(turnsLeft, 
-			this.getTurnTotal(), 100 - this.getTotal())) {
-			super.takeTurn();
-			turnsLeft--;
-			super.setIsMyTurnFalse();
+		System.out.println("max " + this.maximumRolls + " turnsLeft " + turnsRemaining + " " + (100 - this.getTotal()));
+		if (this.strategy.rollAgain(this.turnsRemaining, this.getTurnTotal(), 100 - this.getTotal())) {
+			System.out.println("max " + this.maximumRolls + " turnsLeft " + this.turnsRemaining + " " + (100 - this.getTotal()));
+			this.turnsRemaining++;
+			this.takeTurn();
 		}
 	}
 
