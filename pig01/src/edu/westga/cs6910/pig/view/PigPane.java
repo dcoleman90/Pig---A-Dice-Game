@@ -7,6 +7,8 @@ import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
 import edu.westga.cs6910.pig.model.strategies.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -52,6 +54,7 @@ public class PigPane extends BorderPane {
 		this.addStatusPane(this.theGame);
 		this.addComputerPlayerPane(this.theGame);
 		this.setCenter(this.pnContent);
+		this.addNewGameButton(this.theGame);
 	}
 
 	private void createMenuBar() {
@@ -143,7 +146,27 @@ public class PigPane extends BorderPane {
 		rightBox.getChildren().add(this.pnComputerPlayer);
 		this.pnContent.setRight(rightBox);
 	}
+	
+	//THIS IS NEW CODE FOR THE ADDITIONS 
+	private void addNewGameButton(Game theGame) {
+		HBox bottomBox = new HBox();
+		bottomBox.getStyleClass().add("pane-border");
+		Button newGame = new Button("New Game");
+		newGame.setOnAction(new StartNewGame());
+		bottomBox.getChildren().add(newGame);
+		this.pnContent.setBottom(bottomBox);
+	}
 
+	private class StartNewGame implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent arg0) {
+			System.out.println("You got here now start a new game");
+			
+		}
+		
+	}
+	
 	/*
 	 * Defines the panel in which the user selects which Player plays first.
 	 */
