@@ -54,7 +54,7 @@ public class PigPane extends BorderPane {
 		this.addStatusPane(this.theGame);
 		this.addComputerPlayerPane(this.theGame);
 		this.setCenter(this.pnContent);
-		this.addNewGameButton(this.theGame);
+	//	this.addNewGameButton(this.theGame);
 	}
 
 	private void createMenuBar() {

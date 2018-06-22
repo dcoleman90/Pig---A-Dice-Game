@@ -93,10 +93,14 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @see Player#takeTurn()
 	 */
 	public void takeTurn() {
+		System.out.println("Computer's Turn");
 		super.takeTurn();
 		super.setIsMyTurnFalse();
-		if (this.strategy.rollAgain(this.turnsRemaining, this.getTurnTotal(), 100 - this.getTotal()) || (100 - this.getTotal() < 0)) {
+
+		if (this.strategy.rollAgain(this.turnsRemaining, this.getTurnTotal(), 100 - this.getTotal())
+				|| (100 - this.getTotal() < 0)) {
 			this.turnsRemaining++;
+			System.out.println("turnsRemaning " + this.turnsRemaining);
 			this.takeTurn();
 		}
 		this.turnsRemaining = 0;
