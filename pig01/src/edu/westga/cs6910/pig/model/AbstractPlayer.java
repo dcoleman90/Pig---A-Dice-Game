@@ -32,12 +32,10 @@ public abstract class AbstractPlayer implements Player {
 		int die1Value = this.thePair.getDie1Value();
 		int die2Value = this.thePair.getDie2Value();
 		if (die1Value == 1 || die2Value == 1) {
-			System.out.println("fail die1: " + die1Value + " die2: " + die2Value);
 			this.total = this.total - this.turnTotal;
 			this.isMyTurn = false;
 			this.resetTurnTotal();
 		} else {
-			System.out.println("Succceed die1: " + die1Value + " die2: " + die2Value);
 			this.turnTotal += die1Value + die2Value;
 			this.total += die1Value + die2Value;
 			this.isMyTurn = true;

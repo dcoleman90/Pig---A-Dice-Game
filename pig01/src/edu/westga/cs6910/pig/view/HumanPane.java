@@ -104,7 +104,6 @@ public class HumanPane extends GridPane implements InvalidationListener {
 		@Override
 		public void handle(ActionEvent event) {
 			if (!HumanPane.this.theGame.isGameOver()) {
-				System.out.println("Human Turn");
 				HumanPane.this.theGame.play();
 			} else {
 				HumanPane.this.theHuman.resetTurnTotal();

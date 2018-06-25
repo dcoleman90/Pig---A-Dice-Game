@@ -30,8 +30,10 @@ public class GreedyStrategy implements PigStrategy {
 	public boolean rollAgain(int maxRollsRemaining, int pointsRolled, int pointDifference) {
 		if (pointsRolled == 0) {
 			return false;
+		} else if (pointDifference >= 100) {
+			return false;
 		} else {
-			return (maxRollsRemaining < 2 || pointDifference < 0);
+			return (maxRollsRemaining < 2);
 
 		}
 	}

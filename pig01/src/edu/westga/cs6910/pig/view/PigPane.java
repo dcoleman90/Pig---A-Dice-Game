@@ -1,6 +1,9 @@
 package edu.westga.cs6910.pig.view;
 
+import edu.westga.cs6910.pig.controllers.Main;
+import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
+import edu.westga.cs6910.pig.model.HumanPlayer;
 import edu.westga.cs6910.pig.model.Player;
 import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
@@ -18,6 +21,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * Defines a GUI for the Pig game. This class was started by CS6910
@@ -54,7 +58,7 @@ public class PigPane extends BorderPane {
 		this.addStatusPane(this.theGame);
 		this.addComputerPlayerPane(this.theGame);
 		this.setCenter(this.pnContent);
-	//	this.addNewGameButton(this.theGame);
+		this.addNewGameButton(this.theGame);
 	}
 
 	private void createMenuBar() {
@@ -161,7 +165,14 @@ public class PigPane extends BorderPane {
 
 		@Override
 		public void handle(ActionEvent arg0) {
-			System.out.println("You got here now start a new game");
+			CautiousStrategy careful = new CautiousStrategy();
+			HumanPlayer humanPlayer = new HumanPlayer("player");
+			ComputerPlayer dell = new ComputerPlayer(careful);
+			Game newGame = new Game(humanPlayer, dell);
+			PigPane restartGame = new PigPane(newGame);
+			Stage primaryStage = new Stage();
+			primaryStage.setTitle("CS6910 - Simple Pig");
+		
 			
 		}
 		

@@ -20,8 +20,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		primaryStage.setTitle("CS6910 - Simple Pig");
-		CautiousStrategy test = new CautiousStrategy();
-		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(test));
+		CautiousStrategy cautious = new CautiousStrategy();
+		Game theGame = new Game(new HumanPlayer("Human"), new ComputerPlayer(cautious));
 
 		PigPane root = new PigPane(theGame);
 		Scene scene = new Scene(root, 700, 300);
