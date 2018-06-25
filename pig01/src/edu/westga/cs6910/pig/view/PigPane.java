@@ -1,9 +1,6 @@
 package edu.westga.cs6910.pig.view;
 
-import edu.westga.cs6910.pig.controllers.Main;
-import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
-import edu.westga.cs6910.pig.model.HumanPlayer;
 import edu.westga.cs6910.pig.model.Player;
 import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
 import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
@@ -11,7 +8,6 @@ import edu.westga.cs6910.pig.model.strategies.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -21,7 +17,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 /**
  * Defines a GUI for the Pig game. This class was started by CS6910
@@ -58,7 +53,7 @@ public class PigPane extends BorderPane {
 		this.addStatusPane(this.theGame);
 		this.addComputerPlayerPane(this.theGame);
 		this.setCenter(this.pnContent);
-		this.addNewGameButton(this.theGame);
+		this.addRestartGameButton(this.theGame);
 	}
 
 	private void createMenuBar() {
@@ -152,27 +147,20 @@ public class PigPane extends BorderPane {
 	}
 	
 	//THIS IS NEW CODE FOR THE ADDITIONS 
-	private void addNewGameButton(Game theGame) {
+	private void addRestartGameButton(Game theGame) {
 		HBox bottomBox = new HBox();
 		bottomBox.getStyleClass().add("pane-border");
-		Button newGame = new Button("New Game");
-		newGame.setOnAction(new StartNewGame());
+		Button newGame = new Button("Restart Game");
+		newGame.setOnAction(new RestartTheGame());
 		bottomBox.getChildren().add(newGame);
 		this.pnContent.setBottom(bottomBox);
 	}
 
-	private class StartNewGame implements EventHandler<ActionEvent> {
+	private class RestartTheGame implements EventHandler<ActionEvent> {
 
 		@Override
 		public void handle(ActionEvent arg0) {
-			CautiousStrategy careful = new CautiousStrategy();
-			HumanPlayer humanPlayer = new HumanPlayer("player");
-			ComputerPlayer dell = new ComputerPlayer(careful);
-			Game newGame = new Game(humanPlayer, dell);
-			PigPane restartGame = new PigPane(newGame);
-			Stage primaryStage = new Stage();
-			primaryStage.setTitle("CS6910 - Simple Pig");
-		
+			PigPane.this.theGame.resetGame();
 			
 		}
 		

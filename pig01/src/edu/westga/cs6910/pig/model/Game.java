@@ -144,6 +144,16 @@ public class Game implements Observable {
 		}
 		return false;
 	}
+	
+	/**\
+	 * This method resets the game players score to zero
+	 */
+	public void resetGame() {
+		this.theComputer.setTotal(0);
+		this.theComputer.setTurnTotal(0);
+		this.theHuman.setTotal(0);
+		this.theHuman.setTurnTotal(0);
+	}
 
 	/**
 	 * Returns the pair of dice being used in the game
