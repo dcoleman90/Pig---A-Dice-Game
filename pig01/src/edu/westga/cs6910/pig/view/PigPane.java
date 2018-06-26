@@ -205,7 +205,17 @@ public class PigPane extends BorderPane {
 
 		@Override
 		public void handle(ActionEvent arg0) {
+			TextInputDialog changeName = new TextInputDialog("");
+			changeName.setTitle("Change Name");
+			changeName.setHeaderText("Here you can reset your name");
+			changeName.setContentText("What would you like to change your name to?");
+			Optional<String> newName = changeName.showAndWait();
+			if (newName.isPresent()) {
+				PigPane.this.theGame.getComputerPlayer().setComputerPlayerName(newName.get());
+				PigPane.this.addComputerPlayerPane(PigPane.this.theGame);
+			}
 			PigPane.this.addSecondHumanPlayerPane(PigPane.this.theGame);
+			PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
 		}
 	}
 	
@@ -244,6 +254,7 @@ public class PigPane extends BorderPane {
 			if (newName.isPresent()) {
 				PigPane.this.theGame.getHumanPlayer().setName(newName.get());
 				PigPane.this.addHumanPlayerPane(PigPane.this.theGame);
+				PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
 			}
 		}
 	}

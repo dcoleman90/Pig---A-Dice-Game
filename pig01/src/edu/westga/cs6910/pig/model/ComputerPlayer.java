@@ -13,14 +13,14 @@ import edu.westga.cs6910.pig.model.strategies.PigStrategy;
  */
 public class ComputerPlayer extends AbstractPlayer {
 
-	private static final String NAME = "Simple Computer";
+	private String computerName = "Simple Computer";
 	private PigStrategy strategy;
-	private String name;
+	
 	private int maximumRolls;
 	private int turnsRemaining;
 
 	/**
-	 * Creates a new ComputerPlayer with the specified name.
+	 * Creates a new ComputerPlayer with the specified computerName.
 	 * 
 	 * @param acceptedStrategy
 	 *            is the logic the ComputerPlayer will use to play the game
@@ -31,11 +31,20 @@ public class ComputerPlayer extends AbstractPlayer {
 			throw new IllegalArgumentException("Invalid Strategy");
 		}
 		this.strategy = acceptedStrategy;
-		this.name = NAME;
 		this.turnsRemaining = 0;
 	}
 
 	// *************************** mutator methods ****************************
+
+	/**
+	 * This method will change the computer players computerName to the new accepted value
+	 * @param acceptedName is the new computerName
+	 */
+	public void setComputerPlayerName(String acceptedName) {
+		if (acceptedName != null) {
+			this.computerName = acceptedName;
+		}
+	}
 
 	/**
 	 * Implements Player's setMaximumRolls() to set the maximum number of rolls to 1
@@ -91,8 +100,8 @@ public class ComputerPlayer extends AbstractPlayer {
 	@Override
 	/**
 	 * @see Player#takeTurn() The checking StrategyType for 1 is checking for a
-	 *      manual override of the computer player and forces/allows for manual input
-	 *      in effect turning the computer player into a human player
+	 *      manual override of the computer player and forces/allows for manual
+	 *      input in effect turning the computer player into a human player
 	 */
 	public void takeTurn() {
 		super.takeTurn();
@@ -107,7 +116,6 @@ public class ComputerPlayer extends AbstractPlayer {
 			takeTurn = false;
 		}
 		while (this.strategy.checkStrategyType() == 1 && takeTurn && this.getTurnTotal() != 0) {
-			System.out.println("made it into the while loop");
 			takeTurn = false;
 			super.setIsMyTurnTrue();
 		}
@@ -120,6 +128,6 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @see Player#getName()
 	 */
 	public String getName() {
-		return this.name;
+		return this.computerName;
 	}
 }
