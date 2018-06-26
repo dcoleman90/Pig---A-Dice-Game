@@ -38,6 +38,7 @@ public class PigPane extends BorderPane {
 	private Game theGame;
 	private BorderPane pnContent;
 	private HumanPane pnHumanPlayer;
+	private Human2ndPlayerPane pnHumanPlayer2;
 	private ComputerPane pnComputerPlayer;
 	private StatusPane pnGameInfo;
 	private Pane pnChooseFirstPlayer;
@@ -139,6 +140,14 @@ public class PigPane extends BorderPane {
 		leftBox.getChildren().add(this.pnHumanPlayer);
 		this.pnContent.setLeft(leftBox);
 	}
+	
+	private void addSecondHumanPlayerPane(Game theGame) {
+		HBox rightBox = new HBox();
+		rightBox.getStyleClass().add("pane-border");
+		this.pnHumanPlayer2 = new Human2ndPlayerPane(theGame);
+		rightBox.getChildren().add(this.pnHumanPlayer2);
+		this.pnContent.setRight(rightBox);
+	}
 
 	private void addStatusPane(Game theGame) {
 		HBox centerBox = new HBox();
@@ -177,15 +186,29 @@ public class PigPane extends BorderPane {
 		resetBox.getChildren().add(restartScore);
 		restartScore.setOnAction(new RestartScore());
 		
+		HBox setComputerToHuman = new HBox();
+		Button humanPlayer2 = new Button("Two Human Players");
+		setComputerToHuman.getChildren().add(humanPlayer2);
+		humanPlayer2.setOnAction(new AddSecondHumanPlayer());
+		
 		GridPane.setColumnIndex(instructionsBox, 1);
 		GridPane.setColumnIndex(nameChangeBox, 2);
 		GridPane.setColumnIndex(resetBox, 3);
+		GridPane.setColumnIndex(setComputerToHuman, 4);
 		
-		this.bottomBox.getChildren().addAll(instructionsBox, resetBox, changeName);
+		this.bottomBox.getChildren().addAll(instructionsBox, resetBox, changeName, setComputerToHuman);
 	
 		this.pnContent.setBottom(this.bottomBox);
 	}
 
+	private class AddSecondHumanPlayer implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent arg0) {
+			PigPane.this.addSecondHumanPlayerPane(PigPane.this.theGame);
+		}
+	}
+	
 	private class GameInstructions implements EventHandler<ActionEvent> {
 
 		@Override

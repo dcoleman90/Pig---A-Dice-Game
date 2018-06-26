@@ -15,4 +15,9 @@ public class RandomStrategy implements PigStrategy {
 		return Math.random() > 0.5;
 	}
 
+	@Override
+	public int checkStrategyType() {
+		return 0;
+	}
+
 }

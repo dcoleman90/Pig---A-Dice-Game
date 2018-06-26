@@ -76,6 +76,15 @@ public abstract class AbstractPlayer implements Player {
 		return this.isMyTurn;
 	}
 	
+	/**
+	 * this method sets isMyTurn value to true and returns it
+	 * @return isMyTurn set to true
+	 */
+	public boolean setIsMyTurnTrue() {
+		this.isMyTurn = true;
+		return this.isMyTurn;
+	}
+	
 	@Override
 	/**
 	 * @see Player#getTotal()

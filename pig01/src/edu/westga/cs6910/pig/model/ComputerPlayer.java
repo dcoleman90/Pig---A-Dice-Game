@@ -1,5 +1,6 @@
 package edu.westga.cs6910.pig.model;
 
+import edu.westga.cs6910.pig.model.strategies.ManualStrategy;
 import edu.westga.cs6910.pig.model.strategies.PigStrategy;
 
 /**
@@ -90,17 +91,30 @@ public class ComputerPlayer extends AbstractPlayer {
 
 	@Override
 	/**
-	 * @see Player#takeTurn()
+	 * @see Player#takeTurn() The checking StrategyType for 1 is checking for a
+	 *      manual override of the computer player and forces/allows for manual input
+	 *      in effect turning the computer player into a human player
 	 */
 	public void takeTurn() {
 		super.takeTurn();
 		super.setIsMyTurnFalse();
-
-		if (this.strategy.rollAgain(this.turnsRemaining, this.getTurnTotal(), this.getTotal())) {
-			this.turnsRemaining++;
-			this.takeTurn();
+		boolean takeTurn = true;
+		while (this.strategy.checkStrategyType() == 0 && takeTurn) {
+			System.out.println("Left the while loop");
+			
+			if (this.strategy.rollAgain(this.turnsRemaining, this.getTurnTotal(), this.getTotal())) {
+				this.turnsRemaining++;
+				this.takeTurn();
+			}
+			this.turnsRemaining = 0;
+			takeTurn = false;
 		}
-		this.turnsRemaining = 0;
+		while (this.strategy.checkStrategyType() == 1 && takeTurn && this.getTurnTotal() != 0) {
+			System.out.println("made it into the while loop");
+			takeTurn = false;
+			super.setIsMyTurnTrue();
+		}
+
 	}
 
 	// *************************** accessor methods ****************************
