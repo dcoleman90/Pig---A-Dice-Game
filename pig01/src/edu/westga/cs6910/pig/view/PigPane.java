@@ -74,25 +74,30 @@ public class PigPane extends BorderPane {
 		MenuItem exitPigGame = new MenuItem(" Exit");
 		exitPigGame.setMnemonicParsing(true);
 		exitPigGame.setOnAction(actionEvent -> System.exit(0));
-		pigFile.getItems().add(exitPigGame);
-
+		
 		Menu pigStrategy = new Menu(" Strategy");
 		pigStrategy.setMnemonicParsing(true);
-
 		MenuItem cautiousStrategy = new MenuItem("Cautious");
 		cautiousStrategy.setMnemonicParsing(true);
 		cautiousStrategy.setOnAction(new SetCautiousListener());
-
 		MenuItem randomStrategy = new MenuItem("Random");
 		randomStrategy.setMnemonicParsing(true);
 		randomStrategy.setOnAction(new SetRandomListener());
-
 		MenuItem greedyStrategy = new MenuItem("Greedy");
 		greedyStrategy.setMnemonicParsing(true);
 		greedyStrategy.setOnAction(new SetGreedyListener());
-
+		
+		Menu twoPlayer = new Menu(" Two Player");
+		twoPlayer.setMnemonicParsing(true);
+		MenuItem twoHumanPlayers = new MenuItem("Two Human Players");
+		twoHumanPlayers.setMnemonicParsing(true);
+		twoHumanPlayers.setOnAction(new AddSecondHumanPlayer());
+		
+		pigFile.getItems().add(exitPigGame);
 		pigStrategy.getItems().addAll(cautiousStrategy, randomStrategy, greedyStrategy);
-		pigMenuBar.getMenus().addAll(pigFile, pigStrategy);
+		twoPlayer.getItems().addAll(twoHumanPlayers);
+		
+		pigMenuBar.getMenus().addAll(pigFile, pigStrategy, twoPlayer);
 		this.setTop(pigMenuBar);
 	}
 
@@ -122,6 +127,25 @@ public class PigPane extends BorderPane {
 		public void handle(ActionEvent playStyle) {
 			GreedyStrategy greedyPlay = new GreedyStrategy();
 			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(greedyPlay);
+		}
+	}
+	
+	private class AddSecondHumanPlayer implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent arg0) {
+			TextInputDialog changeName = new TextInputDialog("");
+			changeName.setTitle("Change Name");
+			changeName.setHeaderText("Change Player 2 name");
+			changeName.setContentText("What would you like to change your name to?");
+			Optional<String> newName = changeName.showAndWait();
+			if (newName.isPresent()) {
+				PigPane.this.theGame.getComputerPlayer().setComputerPlayerName(newName.get());
+				PigPane.this.addComputerPlayerPane(PigPane.this.theGame);
+			}
+			PigPane.this.addSecondHumanPlayerPane(PigPane.this.theGame);
+			PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
+			PigPane.this.addStatusPane(PigPane.this.theGame);
 		}
 	}
 
@@ -185,39 +209,16 @@ public class PigPane extends BorderPane {
 		Button restartScore = new Button("Reset Scores to 0");
 		resetBox.getChildren().add(restartScore);
 		restartScore.setOnAction(new RestartScore());
-		
-		HBox setComputerToHuman = new HBox();
-		Button humanPlayer2 = new Button("Two Human Players");
-		setComputerToHuman.getChildren().add(humanPlayer2);
-		humanPlayer2.setOnAction(new AddSecondHumanPlayer());
-		
+	
 		GridPane.setColumnIndex(instructionsBox, 1);
 		GridPane.setColumnIndex(nameChangeBox, 2);
 		GridPane.setColumnIndex(resetBox, 3);
-		GridPane.setColumnIndex(setComputerToHuman, 4);
-		
-		this.bottomBox.getChildren().addAll(instructionsBox, resetBox, changeName, setComputerToHuman);
+	
+		this.bottomBox.getChildren().addAll(instructionsBox, resetBox, changeName);
 	
 		this.pnContent.setBottom(this.bottomBox);
 	}
 
-	private class AddSecondHumanPlayer implements EventHandler<ActionEvent> {
-
-		@Override
-		public void handle(ActionEvent arg0) {
-			TextInputDialog changeName = new TextInputDialog("");
-			changeName.setTitle("Change Name");
-			changeName.setHeaderText("Here you can reset your name");
-			changeName.setContentText("What would you like to change your name to?");
-			Optional<String> newName = changeName.showAndWait();
-			if (newName.isPresent()) {
-				PigPane.this.theGame.getComputerPlayer().setComputerPlayerName(newName.get());
-				PigPane.this.addComputerPlayerPane(PigPane.this.theGame);
-			}
-			PigPane.this.addSecondHumanPlayerPane(PigPane.this.theGame);
-			PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
-		}
-	}
 	
 	private class GameInstructions implements EventHandler<ActionEvent> {
 
@@ -255,6 +256,7 @@ public class PigPane extends BorderPane {
 				PigPane.this.theGame.getHumanPlayer().setName(newName.get());
 				PigPane.this.addHumanPlayerPane(PigPane.this.theGame);
 				PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
+				PigPane.this.addStatusPane(PigPane.this.theGame);
 			}
 		}
 	}
