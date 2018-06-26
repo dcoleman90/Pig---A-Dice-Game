@@ -2,7 +2,6 @@ package edu.westga.cs6910.pig.view;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
-import edu.westga.cs6910.pig.model.HumanPlayer;
 import edu.westga.cs6910.pig.model.strategies.ManualStrategy;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;

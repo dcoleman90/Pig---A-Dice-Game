@@ -1,6 +1,5 @@
 package edu.westga.cs6910.pig.model;
 
-import edu.westga.cs6910.pig.model.strategies.ManualStrategy;
 import edu.westga.cs6910.pig.model.strategies.PigStrategy;
 
 /**
