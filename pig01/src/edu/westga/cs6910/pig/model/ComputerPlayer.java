@@ -99,8 +99,6 @@ public class ComputerPlayer extends AbstractPlayer {
 		super.setIsMyTurnFalse();
 		boolean takeTurn = true;
 		while (this.strategy.checkStrategyType() == 0 && takeTurn) {
-			System.out.println("Left the while loop");
-			
 			if (this.strategy.rollAgain(this.turnsRemaining, this.getTurnTotal(), this.getTotal())) {
 				this.turnsRemaining++;
 				this.takeTurn();
