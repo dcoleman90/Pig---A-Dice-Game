@@ -34,4 +34,12 @@ public class HumanPlayer extends AbstractPlayer {
 	public String getName() {
 		return this.name;
 	}
+	
+	/**
+	 * This method will be used to reset the Human Player's name to a new name
+	 * @param newName is the accepted Name value
+	 */
+	public void setName(String newName) {
+		this.name = newName;
+	}
 }

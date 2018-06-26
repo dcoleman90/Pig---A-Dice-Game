@@ -1,5 +1,7 @@
 package edu.westga.cs6910.pig.view;
 
+import java.util.Optional;
+
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
@@ -7,6 +9,7 @@ import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
 import edu.westga.cs6910.pig.model.strategies.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -16,6 +19,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -58,7 +62,7 @@ public class PigPane extends BorderPane {
 		this.addStatusPane(this.theGame);
 		this.addComputerPlayerPane(this.theGame);
 		this.setCenter(this.pnContent);
-		this.addBottomPaneRestartAndInstructions(this.theGame);
+		this.addBottomPaneOptions(this.theGame);
 		
 	}
 
@@ -152,23 +156,33 @@ public class PigPane extends BorderPane {
 		this.pnContent.setRight(rightBox);
 	}
 
-	private void addBottomPaneRestartAndInstructions(Game theGame) {
+	private void addBottomPaneOptions(Game theGame) {
 		this.bottomBox = new GridPane();
+		this.bottomBox.setHgap(10);
+		this.bottomBox.setVgap(10);
+		this.bottomBox.setPadding(new Insets(10, 10, 10, 10));
+		
+		HBox instructionsBox = new HBox();
 		Button showInstructions = new Button("Instructions");
 		showInstructions.setOnAction(new GameInstructions());
-		HBox instructionsBox = new HBox();
-		instructionsBox.getStyleClass().add("pane-border");
 		instructionsBox.getChildren().add(showInstructions);
-
+	
+		HBox nameChangeBox = new HBox();
+		Button changeName = new Button("Change Name");
+		changeName.setOnAction(new ChangeHumanName());
+		nameChangeBox.getChildren().add(changeName);		
+		
 		HBox resetBox = new HBox();
-		resetBox.getStyleClass().add("pane-border");
 		Button restartScore = new Button("Reset Scores to 0");
 		resetBox.getChildren().add(restartScore);
-		GridPane.setColumnIndex(resetBox, 5);
-		GridPane.setColumnIndex(instructionsBox, 1);
-		this.bottomBox.getChildren().addAll(instructionsBox, resetBox);
-
 		restartScore.setOnAction(new RestartScore());
+		
+		GridPane.setColumnIndex(instructionsBox, 1);
+		GridPane.setColumnIndex(nameChangeBox, 2);
+		GridPane.setColumnIndex(resetBox, 3);
+		
+		this.bottomBox.getChildren().addAll(instructionsBox, resetBox, changeName);
+	
 		this.pnContent.setBottom(this.bottomBox);
 	}
 
@@ -182,16 +196,32 @@ public class PigPane extends BorderPane {
 			gameInstructions.setContentText("Instructions" + "\n 1st Choose the Computer play style you wish to face"
 					+ "\n Cautious will only roll once, " + "\n Random has a 50/50 chance of attempting to roll again, "
 					+ "\n Greedy will roll a maxium of three times"
-					+ "\n After you make your selection choose select which player you wish to begin the game"
+					+ "\n\n After you make your selection choose select which player you wish to begin the game"
 					+ "\n Click the Roll button to roll your dice, when the points gained out weigh the risk to adquire more points press hold"
 					+ "\n When you press hold all your points gained this round are stored."
-					+ "\n If at any time you roll a one with either dice you forfiet all points"
+					+ "\n\n If at any time a one is rolled all points are forfeit and the turn is lost"
 					+ "\n After your turn is over press the Computers take turn button"
 					+ "\n The Computer will then roll and hold based upon the Strategy selected"
-					+ "\n The First player to 100 wins");
+					+ "\n\n The First player to 100 wins");
 			gameInstructions.showAndWait();
 			ButtonType exit = new ButtonType("exit", ButtonData.CANCEL_CLOSE);
 			gameInstructions.getButtonTypes().setAll(exit);
+		}
+	}
+	
+	private class ChangeHumanName implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent arg0) {
+			TextInputDialog changeName = new TextInputDialog("");
+			changeName.setTitle("Change Name");
+			changeName.setHeaderText("Here you can reset your name");
+			changeName.setContentText("What would you like to change your name to?");
+			Optional<String> newName = changeName.showAndWait();
+			if (newName.isPresent()) {
+				PigPane.this.theGame.getHumanPlayer().setName(newName.get());
+				PigPane.this.addHumanPlayerPane(PigPane.this.theGame);
+			}
 		}
 	}
 
