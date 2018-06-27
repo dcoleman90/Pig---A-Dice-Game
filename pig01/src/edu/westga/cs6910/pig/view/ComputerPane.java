@@ -111,7 +111,6 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		public void handle(ActionEvent arg0) {
 			if (!ComputerPane.this.theGame.isGameOver()) {
 				ComputerPane.this.theGame.getComputerPlayer().setMaximumRolls(3);
-				System.out.println("Got to play");
 				ComputerPane.this.theGame.play();
 
 			}

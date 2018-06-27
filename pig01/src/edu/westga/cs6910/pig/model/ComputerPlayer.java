@@ -110,7 +110,6 @@ public class ComputerPlayer extends AbstractPlayer {
 	 *      time
 	 */
 	public void takeTurn() {
-		System.out.println("TakeTurn");
 		super.takeTurn();
 		super.setIsMyTurnFalse();
 		boolean takeTurn = true;
@@ -137,7 +136,6 @@ public class ComputerPlayer extends AbstractPlayer {
 		int numberOfRounds = acceptedNumberOfRounds;
 		int cheatersTotal = numberOfRounds * 25;
 		this.resetTurnTotal();
-		System.out.println("setTurnTotalS");
 		this.setTotal(cheatersTotal);
 	}
 
