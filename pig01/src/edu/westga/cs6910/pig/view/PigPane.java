@@ -130,8 +130,8 @@ public class PigPane extends BorderPane {
 		MenuItem twoHumanPlayers = new MenuItem("Two Human Players");
 		twoHumanPlayers.setMnemonicParsing(true);
 		twoHumanPlayers.setOnAction(new AddSecondHumanPlayer());
-		twoPlayer.getItems().addAll(twoHumanPlayers);
-		return twoPlayer;
+		this.twoPlayer.getItems().addAll(twoHumanPlayers);
+		return this.twoPlayer;
 	}
 
 	private class SetCheatingListener implements EventHandler<ActionEvent> {
