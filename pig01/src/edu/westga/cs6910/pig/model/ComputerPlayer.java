@@ -102,6 +102,8 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @see Player#takeTurn() The checking StrategyType for 1 is checking for a
 	 *      manual override of the computer player and forces/allows for manual
 	 *      input in effect turning the computer player into a human player
+	 *      
+	 *      If StrategyType is equal to 2 then the computer player returns 20 each time
 	 */
 	public void takeTurn() {
 		super.takeTurn();
@@ -118,6 +120,10 @@ public class ComputerPlayer extends AbstractPlayer {
 		while (this.strategy.checkStrategyType() == 1 && takeTurn && this.getTurnTotal() != 0) {
 			takeTurn = false;
 			super.setIsMyTurnTrue();
+		}
+		while (this.strategy.checkStrategyType() == 2) {
+			this.setTurnTotal(20);
+			takeTurn = false;
 		}
 
 	}
