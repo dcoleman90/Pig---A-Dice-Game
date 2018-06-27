@@ -125,7 +125,6 @@ public class ComputerPlayer extends AbstractPlayer {
 			this.setTurnTotal(20);
 			takeTurn = false;
 		}
-
 	}
 
 	// *************************** accessor methods ****************************

@@ -5,6 +5,7 @@ import java.util.Optional;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
+import edu.westga.cs6910.pig.model.strategies.Cheater;
 import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
 import edu.westga.cs6910.pig.model.strategies.RandomStrategy;
 import javafx.event.ActionEvent;
@@ -82,38 +83,62 @@ public class PigPane extends BorderPane {
 	
 	private void createMenuBar() {
 		MenuBar pigMenuBar = new MenuBar();
+		pigMenuBar.getMenus().addAll(this.createMenuBarFile(), this.createMenuBarStrategy(), this.twoPlayerOption());
+		this.setTop(pigMenuBar);
+	}
+	
+	private Menu createMenuBarStrategy() {
+		Menu pigStrategy = new Menu(" Strategy");
+		pigStrategy.setMnemonicParsing(true);
+		
+		MenuItem cautiousStrategy = new MenuItem("Cautious");
+		cautiousStrategy.setMnemonicParsing(true);
+		cautiousStrategy.setOnAction(new SetCautiousListener());
+		
+		MenuItem randomStrategy = new MenuItem("Random");
+		randomStrategy.setMnemonicParsing(true);
+		randomStrategy.setOnAction(new SetRandomListener());
+		
+		MenuItem greedyStrategy = new MenuItem("Greedy");
+		greedyStrategy.setMnemonicParsing(true);
+		greedyStrategy.setOnAction(new SetGreedyListener());
+
+		MenuItem cheating = new MenuItem("Cheater");
+		cheating.setMnemonicParsing(true);
+		cheating.setOnAction(new SetCheatingListener());
+		return pigStrategy;
+	}
+	
+	private Menu createMenuBarFile() {
+
 		Menu pigFile = new Menu(" File");
 		pigFile.setMnemonicParsing(true);
 		MenuItem exitPigGame = new MenuItem(" Exit");
 		exitPigGame.setMnemonicParsing(true);
 		exitPigGame.setOnAction(actionEvent -> System.exit(0));
-		
-		Menu pigStrategy = new Menu(" Strategy");
-		pigStrategy.setMnemonicParsing(true);
-		MenuItem cautiousStrategy = new MenuItem("Cautious");
-		cautiousStrategy.setMnemonicParsing(true);
-		cautiousStrategy.setOnAction(new SetCautiousListener());
-		MenuItem randomStrategy = new MenuItem("Random");
-		randomStrategy.setMnemonicParsing(true);
-		randomStrategy.setOnAction(new SetRandomListener());
-		MenuItem greedyStrategy = new MenuItem("Greedy");
-		greedyStrategy.setMnemonicParsing(true);
-		greedyStrategy.setOnAction(new SetGreedyListener());
-		
+		pigFile.getItems().add(exitPigGame);
+		return pigFile;
+	}
+	
+	private Menu twoPlayerOption() {
 		Menu twoPlayer = new Menu(" Two Player");
 		twoPlayer.setMnemonicParsing(true);
 		MenuItem twoHumanPlayers = new MenuItem("Two Human Players");
 		twoHumanPlayers.setMnemonicParsing(true);
 		twoHumanPlayers.setOnAction(new AddSecondHumanPlayer());
-		
-		pigFile.getItems().add(exitPigGame);
-		pigStrategy.getItems().addAll(cautiousStrategy, randomStrategy, greedyStrategy);
 		twoPlayer.getItems().addAll(twoHumanPlayers);
-		
-		pigMenuBar.getMenus().addAll(pigFile, pigStrategy, twoPlayer);
-		this.setTop(pigMenuBar);
+		return twoPlayer;
 	}
 
+	private class SetCheatingListener implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent playStyle) {
+			Cheater cheating = new Cheater();
+			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(cheating);
+		}
+	}
+	
 	private class SetRandomListener implements EventHandler<ActionEvent> {
 
 		@Override
