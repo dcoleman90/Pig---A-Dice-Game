@@ -1,11 +1,13 @@
 - I had real fun this week making this project truely my own thank you
 
 
+
 Instruction Button - 2 points
 First change was I added an instruction button. Its pretty simple the user can click it at any time and instructions about the game will appear 
 as an alert. I felt that the alert was a very useful feature and as the user will not be reading this document for ages at a time but rather a quick skim
 I felt the alert would be the most effective message to convay the information. I also felt it would be SUPER annoying for anyone who kept playing the game 
 to be stuck reading the instructions when the game starts, furthermore I like referecing rules in the middle of game play so the ease of a button felt right to me
+
 
 
 
@@ -16,27 +18,38 @@ Upon selecting start new game it calls the private class StartNewGame - which do
 also allowed for changing computer strategies. I felt this was more inline with what a user expected. The opponent did default to the previous opponent 
 and the names remained the same.
 
-To minimize codelines a new Game() was created (taking the same players but not the orignal firstPlayer) and then invokes all the previous build panes 
-to rebuild the stage
+To minimize codelines a new Game() was created (taking the same players but not the orignal firstPlayer as once I just felt it be more useful for players to 
+swap if they wanted too) and then invokes all the previous build panes to rebuild the stage - names and play styles of the players remain intact
 
 
 
-Name Changes - 2 points
+
+Name Changes/design improvements - 2 points
 The change name button allows the human player to change there name - it prompts an alert with a text box the user can fill to whatever they desire.
 The second player (YES I MADE IT ABLE TO HAVE TWO HUMANS) also prompts an alert which the user can fill to whatever they desire
 All the Strategies change the name of the player to the strategy they reflect (cautious is still simple computer)
 The names in FirstPersonChooserPane, ComputerPane, HumanPane and StatusPane are changed to reflect the newly selected names immetately upon selection
 
+Once the game is started the Strategy and TwoPlayer menu options are disabled - users can still exit but they cannot change strategies in the middle of the 
+game.
+
+
+
 
 2nd Human Player - 4 points
-I modified The computerPlayer to allow for a new StrategyManuel - in effect creating a second human player by overriding the computerplayers pane. I decided
-this was a better approach than redesigning the game to allow for potentially two humans. The StrategyManuel forces the computer to roll once then send it back.
+I modified The computerPlayer to allow for a new StrategyManual - in effect creating a second human player by overriding the computerplayers pane. I decided
+this was a better approach than redesigning the game to allow for potentially two humans. The StrategyManual forces the computer to roll once then send it back without 
+ending the turn (calling swap or hold).
+
 A third player pane was created Human2ndPane which allowed for the ComputerPlayer object but like HumanPane had two buttons to allow the second player to 
 continue to roll and hold when they felt it was right. To Break the ComputerPlayer taketurn I added a second element to the PigStrategy. I forsaw no way to force the 
 takeTurn method to allow for manual manipulation so I added a checkStrategyType which simply returns an int value one
 
 What is so exciting about this is it allows for many many different options in the future to -cheat- the automatic takeTurn if it is needed. Thus when TakeTurn is called it rolls
 dice, then checks strategy type if it is one it breaks the mold WITHOUT ending its turn allowing the user to do so if he desires. All the previous Strategies all return 0
+
+
+
 
 
 Added Cheater strategy - 2 points
