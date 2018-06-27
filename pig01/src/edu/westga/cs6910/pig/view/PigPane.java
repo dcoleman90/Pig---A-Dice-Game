@@ -263,18 +263,39 @@ public class PigPane extends BorderPane {
 		changeName.setOnAction(new ChangeHumanName());
 		nameChangeBox.getChildren().add(changeName);		
 		
-		HBox resetBox = new HBox();
-		Button restartScore = new Button("Start New Game");
-		resetBox.getChildren().add(restartScore);
-		restartScore.setOnAction(new StartNewGame());
+		HBox newGameBox = new HBox();
+		Button newGame = new Button("Start New Game");
+		newGameBox.getChildren().add(newGame);
+		newGame.setOnAction(new NewGameAlert());
 	
 		GridPane.setColumnIndex(instructionsBox, 1);
 		GridPane.setColumnIndex(nameChangeBox, 2);
-		GridPane.setColumnIndex(resetBox, 3);
+		GridPane.setColumnIndex(newGameBox, 3);
 	
-		this.bottomBox.getChildren().addAll(instructionsBox, resetBox, changeName);
+		this.bottomBox.getChildren().addAll(instructionsBox, newGameBox, changeName);
 	
 		this.pnContent.setBottom(this.bottomBox);
+	}
+	
+	private class NewGameAlert implements EventHandler<ActionEvent> {
+
+		@Override
+		public void handle(ActionEvent arg0) {
+			Alert gameInstructions = new Alert(AlertType.CONFIRMATION);
+			gameInstructions.setTitle("Start A New Game?");
+			gameInstructions.setHeaderText("Are you sure you wish to start a new game?");
+			gameInstructions.setContentText("If you start a new game this one will be canceled and the scores will be reset");
+			
+			ButtonType newGame = new ButtonType("Start new Game");
+			ButtonType exit = new ButtonType("cancel", ButtonData.CANCEL_CLOSE);
+			gameInstructions.getButtonTypes().setAll(newGame, exit);
+			
+			Optional<ButtonType> result = gameInstructions.showAndWait();
+			if (result.get() == newGame) {
+				StartNewGame startNewGame = new StartNewGame();
+				startNewGame.handle(arg0);
+			}
+		}
 	}
 
 	private class GameInstructions implements EventHandler<ActionEvent> {
@@ -411,8 +432,5 @@ public class PigPane extends BorderPane {
 				PigPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 			}
 		}
-
-		// THIS IS NEW CODE FOR THE ADDITIONS
-
 	}
 }
