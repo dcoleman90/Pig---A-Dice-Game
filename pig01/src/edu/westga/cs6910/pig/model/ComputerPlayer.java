@@ -16,7 +16,7 @@ public class ComputerPlayer extends AbstractPlayer {
 	private String computerName = "Simple Computer";
 	private PigStrategy strategy;
 
-	private int maximumRolls;
+//	private int maximumRolls;
 	private int turnsRemaining;
 
 	/**
@@ -48,35 +48,43 @@ public class ComputerPlayer extends AbstractPlayer {
 			this.computerName = acceptedName;
 		}
 	}
-
+	
 	/**
-	 * Implements Player's setMaximumRolls() to set the maximum number of rolls to 1
-	 * 
+	 * This is the setter method for this.turnsRemaining
+	 * @param acceptedTurnsRemaining is the new value for this.turnsRemaining
 	 */
-	public void setMaximumRolls() {
-		this.maximumRolls = 1;
+	public void setTurnsRemaining(int acceptedTurnsRemaining) {
+		this.turnsRemaining = acceptedTurnsRemaining;
 	}
 
-	/**
-	 * Implements Player's setMaximumRolls, but is not normally called by client
-	 * objects. Instead, clients usually call the 0-parameter version
-	 * 
-	 * @param maximumRolls
-	 *            The maximum number of times the computer will roll before holding
-	 */
-	public void setMaximumRolls(int maximumRolls) {
-		this.maximumRolls = maximumRolls;
-	}
-
-	/**
-	 * THis is the getter for maxiumRolls and is used primarily for testing the
-	 * default and secondary constructors
-	 * 
-	 * @return this.maxiumRolls
-	 */
-	public int getMaxiumRolls() {
-		return this.maximumRolls;
-	}
+//	/**
+//	 * Implements Player's setMaximumRolls() to set the maximum number of rolls to 1
+//	 * 
+//	 */
+//	public void setMaximumRolls() {
+//		this.maximumRolls = 1;
+//	}
+//
+//	/**
+//	 * Implements Player's setMaximumRolls, but is not normally called by client
+//	 * objects. Instead, clients usually call the 0-parameter version
+//	 * 
+//	 * @param maximumRolls
+//	 *            The maximum number of times the computer will roll before holding
+//	 */
+//	public void setMaximumRolls(int maximumRolls) {
+//		this.maximumRolls = maximumRolls;
+//	}
+//
+//	/**
+//	 * THis is the getter for maxiumRolls and is used primarily for testing the
+//	 * default and secondary constructors
+//	 * 
+//	 * @return this.maxiumRolls
+//	 */
+//	public int getMaxiumRolls() {
+//		return this.maximumRolls;
+//	}
 
 	/**
 	 * This method will set the Computer Strategy to a new one

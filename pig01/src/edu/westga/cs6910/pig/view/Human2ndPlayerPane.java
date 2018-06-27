@@ -19,7 +19,7 @@ import javafx.scene.layout.HBox;
  * @author CS6910
  * @version Summer 2018
  * @author Drew Coleman
- * @version 06/05/2018
+ * @version 06/26/2018
  */
 public class Human2ndPlayerPane extends GridPane implements InvalidationListener {
 	private Label lblDiceValues;

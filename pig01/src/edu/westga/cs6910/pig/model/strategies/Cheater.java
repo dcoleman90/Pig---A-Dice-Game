@@ -5,7 +5,7 @@ package edu.westga.cs6910.pig.model.strategies;
  * points to the computer game
  * 
  * @author Drew Coleman
- * @version 06/15/2018
+ * @version 06/26/2018
  *
  */
 public class Cheater implements PigStrategy {

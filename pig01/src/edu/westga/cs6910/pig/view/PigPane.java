@@ -2,6 +2,7 @@ package edu.westga.cs6910.pig.view;
 
 import java.util.Optional;
 
+import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
@@ -346,6 +347,7 @@ public class PigPane extends BorderPane {
 		 * click in the computerPlayerButton.
 		 */
 		public void handle(ActionEvent arg0) {
+			PigPane.this.theGame.getComputerPlayer().setTurnsRemaining(0);
 			Game newGame = new Game(PigPane.this.theGame.getHumanPlayer(), PigPane.this.theGame.getComputerPlayer());
 			PigPane.this.theGame.startNewGame(PigPane.this.theGame.getCurrentPlayer());
 			PigPane.this.theGame.resetGame();
