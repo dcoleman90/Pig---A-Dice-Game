@@ -63,10 +63,23 @@ public class PigPane extends BorderPane {
 		this.addStatusPane(this.theGame);
 		this.addComputerPlayerPane(this.theGame);
 		this.setCenter(this.pnContent);
-		this.addBottomPaneOptions(this.theGame);
-		
+		this.addBottomPaneOptions(this.theGame);  
 	}
-
+	
+	private void startNewGame(Game newGame) {
+		this.theGame = newGame;
+		this.addFirstPlayerChooserPane(this.theGame);
+		this.createMenuBar();
+		this.addHumanPlayerPane(this.theGame);
+		this.addStatusPane(this.theGame);
+		this.addComputerPlayerPane(this.theGame);
+		if (PigPane.this.theGame.getComputerPlayer().getComputerStrategy().checkStrategyType() == 1) {
+			this.addSecondHumanPlayerPane(this.theGame);
+		}
+		this.setCenter(this.pnContent);
+		this.addBottomPaneOptions(this.theGame);  
+	}
+	
 	private void createMenuBar() {
 		MenuBar pigMenuBar = new MenuBar();
 		Menu pigFile = new Menu(" File");
@@ -206,9 +219,9 @@ public class PigPane extends BorderPane {
 		nameChangeBox.getChildren().add(changeName);		
 		
 		HBox resetBox = new HBox();
-		Button restartScore = new Button("Reset Scores to 0");
+		Button restartScore = new Button("Start New Game");
 		resetBox.getChildren().add(restartScore);
-		restartScore.setOnAction(new RestartScore());
+		restartScore.setOnAction(new StartNewGame());
 	
 		GridPane.setColumnIndex(instructionsBox, 1);
 		GridPane.setColumnIndex(nameChangeBox, 2);
@@ -219,7 +232,6 @@ public class PigPane extends BorderPane {
 		this.pnContent.setBottom(this.bottomBox);
 	}
 
-	
 	private class GameInstructions implements EventHandler<ActionEvent> {
 
 		@Override
@@ -261,16 +273,23 @@ public class PigPane extends BorderPane {
 		}
 	}
 
-	private class RestartScore implements EventHandler<ActionEvent> {
+	private class StartNewGame implements EventHandler<ActionEvent> {
 		@Override
 		/**
 		 * Enables the ComputerPlayerPanel and starts a new game. Event handler for a
 		 * click in the computerPlayerButton.
 		 */
 		public void handle(ActionEvent arg0) {
-
+			Game newGame = new Game(PigPane.this.theGame.getHumanPlayer(), PigPane.this.theGame.getComputerPlayer());
+			PigPane.this.theGame.startNewGame(PigPane.this.theGame.getCurrentPlayer());
 			PigPane.this.theGame.resetGame();
-
+			PigPane.this.pnChooseFirstPlayer.setDisable(true);
+			PigPane.this.pnComputerPlayer.setDisable(false);
+			PigPane.this.pnHumanPlayer.setDisable(false);
+			if (PigPane.this.theGame.getComputerPlayer().getComputerStrategy().checkStrategyType() == 1) {
+				PigPane.this.pnHumanPlayer2.setDisable(false);
+			}
+			PigPane.this.startNewGame(newGame);
 		}
 	}
 
