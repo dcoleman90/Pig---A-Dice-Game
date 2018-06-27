@@ -2,7 +2,6 @@ package edu.westga.cs6910.pig.view;
 
 import java.util.Optional;
 
-import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
