@@ -15,7 +15,7 @@ public class ComputerPlayer extends AbstractPlayer {
 
 	private String computerName = "Simple Computer";
 	private PigStrategy strategy;
-	
+
 	private int maximumRolls;
 	private int turnsRemaining;
 
@@ -37,8 +37,11 @@ public class ComputerPlayer extends AbstractPlayer {
 	// *************************** mutator methods ****************************
 
 	/**
-	 * This method will change the computer players computerName to the new accepted value
-	 * @param acceptedName is the new computerName
+	 * This method will change the computer players computerName to the new accepted
+	 * value
+	 * 
+	 * @param acceptedName
+	 *            is the new computerName
 	 */
 	public void setComputerPlayerName(String acceptedName) {
 		if (acceptedName != null) {
@@ -102,10 +105,12 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @see Player#takeTurn() The checking StrategyType for 1 is checking for a
 	 *      manual override of the computer player and forces/allows for manual
 	 *      input in effect turning the computer player into a human player
-	 *      
-	 *      If StrategyType is equal to 2 then the computer player returns 20 each time
+	 * 
+	 *      If StrategyType is equal to 2 then the computer player returns 20 each
+	 *      time
 	 */
 	public void takeTurn() {
+		System.out.println("TakeTurn");
 		super.takeTurn();
 		super.setIsMyTurnFalse();
 		boolean takeTurn = true;
@@ -121,10 +126,19 @@ public class ComputerPlayer extends AbstractPlayer {
 			takeTurn = false;
 			super.setIsMyTurnTrue();
 		}
-		while (this.strategy.checkStrategyType() == 2) {
-			this.setTurnTotal(20);
+		while (this.strategy.checkStrategyType() == 2 && takeTurn) {
 			takeTurn = false;
+			this.turnsRemaining++;
+			this.cheatersRolls(this.turnsRemaining);
 		}
+	}
+
+	private void cheatersRolls(int acceptedNumberOfRounds) {
+		int numberOfRounds = acceptedNumberOfRounds;
+		int cheatersTotal = numberOfRounds * 25;
+		this.resetTurnTotal();
+		System.out.println("setTurnTotalS");
+		this.setTotal(cheatersTotal);
 	}
 
 	// *************************** accessor methods ****************************

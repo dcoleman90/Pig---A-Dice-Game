@@ -106,6 +106,8 @@ public class PigPane extends BorderPane {
 		MenuItem cheating = new MenuItem("Cheater");
 		cheating.setMnemonicParsing(true);
 		cheating.setOnAction(new SetCheatingListener());
+		
+		pigStrategy.getItems().addAll(cautiousStrategy, randomStrategy, greedyStrategy, cheating);
 		return pigStrategy;
 	}
 	
@@ -135,7 +137,11 @@ public class PigPane extends BorderPane {
 		@Override
 		public void handle(ActionEvent playStyle) {
 			Cheater cheating = new Cheater();
+			PigPane.this.theGame.getComputerPlayer().setComputerPlayerName("!!! CHEATER !!!");
 			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(cheating);
+			PigPane.this.addComputerPlayerPane(PigPane.this.theGame);
+			PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
+			PigPane.this.addStatusPane(PigPane.this.theGame);
 		}
 	}
 	
