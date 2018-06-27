@@ -44,6 +44,8 @@ public class PigPane extends BorderPane {
 	private StatusPane pnGameInfo;
 	private Pane pnChooseFirstPlayer;
 	private GridPane bottomBox;
+	private Menu pigStrategy;
+	private Menu twoPlayer;
 
 	/**
 	 * Creates a pane object to provide the view for the specified Game model
@@ -88,8 +90,8 @@ public class PigPane extends BorderPane {
 	}
 	
 	private Menu createMenuBarStrategy() {
-		Menu pigStrategy = new Menu(" Strategy");
-		pigStrategy.setMnemonicParsing(true);
+		this.pigStrategy = new Menu(" Strategy");
+		this.pigStrategy.setMnemonicParsing(true);
 		
 		MenuItem cautiousStrategy = new MenuItem("Cautious");
 		cautiousStrategy.setMnemonicParsing(true);
@@ -107,8 +109,8 @@ public class PigPane extends BorderPane {
 		cheating.setMnemonicParsing(true);
 		cheating.setOnAction(new SetCheatingListener());
 		
-		pigStrategy.getItems().addAll(cautiousStrategy, randomStrategy, greedyStrategy, cheating);
-		return pigStrategy;
+		this.pigStrategy.getItems().addAll(cautiousStrategy, randomStrategy, greedyStrategy, cheating);
+		return this.pigStrategy;
 	}
 	
 	private Menu createMenuBarFile() {
@@ -123,8 +125,8 @@ public class PigPane extends BorderPane {
 	}
 	
 	private Menu twoPlayerOption() {
-		Menu twoPlayer = new Menu(" Two Player");
-		twoPlayer.setMnemonicParsing(true);
+		this.twoPlayer = new Menu(" Two Player");
+		this.twoPlayer.setMnemonicParsing(true);
 		MenuItem twoHumanPlayers = new MenuItem("Two Human Players");
 		twoHumanPlayers.setMnemonicParsing(true);
 		twoHumanPlayers.setOnAction(new AddSecondHumanPlayer());
@@ -136,9 +138,9 @@ public class PigPane extends BorderPane {
 
 		@Override
 		public void handle(ActionEvent playStyle) {
-			Cheater cheating = new Cheater();
-			PigPane.this.theGame.getComputerPlayer().setComputerPlayerName("!!! CHEATER !!!");
+			Cheater cheating = new Cheater();	
 			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(cheating);
+			PigPane.this.theGame.getComputerPlayer().setComputerPlayerName("!!! CHEATER !!!");
 			PigPane.this.addComputerPlayerPane(PigPane.this.theGame);
 			PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
 			PigPane.this.addStatusPane(PigPane.this.theGame);
@@ -151,6 +153,10 @@ public class PigPane extends BorderPane {
 		public void handle(ActionEvent playStyle) {
 			RandomStrategy randomPlay = new RandomStrategy();
 			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(randomPlay);
+			PigPane.this.theGame.getComputerPlayer().setComputerPlayerName("Random Player");
+			PigPane.this.addComputerPlayerPane(PigPane.this.theGame);
+			PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
+			PigPane.this.addStatusPane(PigPane.this.theGame);
 
 		}
 	}
@@ -161,6 +167,10 @@ public class PigPane extends BorderPane {
 		public void handle(ActionEvent playStyle) {
 			CautiousStrategy carefulPlay = new CautiousStrategy();
 			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(carefulPlay);
+			PigPane.this.theGame.getComputerPlayer().setComputerPlayerName("Simple Computer");
+			PigPane.this.addComputerPlayerPane(PigPane.this.theGame);
+			PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
+			PigPane.this.addStatusPane(PigPane.this.theGame);
 
 		}
 
@@ -171,6 +181,10 @@ public class PigPane extends BorderPane {
 		public void handle(ActionEvent playStyle) {
 			GreedyStrategy greedyPlay = new GreedyStrategy();
 			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(greedyPlay);
+			PigPane.this.theGame.getComputerPlayer().setComputerPlayerName("Greedy Player");
+			PigPane.this.addComputerPlayerPane(PigPane.this.theGame);
+			PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
+			PigPane.this.addStatusPane(PigPane.this.theGame);
 		}
 	}
 	
@@ -373,6 +387,8 @@ public class PigPane extends BorderPane {
 			 */
 			public void handle(ActionEvent arg0) {
 				PigPane.this.pnComputerPlayer.setDisable(false);
+				PigPane.this.pigStrategy.setDisable(true);
+				PigPane.this.twoPlayer.setDisable(true);
 				PigPane.this.pnChooseFirstPlayer.setDisable(true);
 				PigPane.this.theGame.startNewGame(NewGamePane.this.theComputer);
 			}
@@ -389,6 +405,8 @@ public class PigPane extends BorderPane {
 			@Override
 			public void handle(ActionEvent event) {
 				PigPane.this.pnHumanPlayer.setDisable(false);
+				PigPane.this.pigStrategy.setDisable(true);
+				PigPane.this.twoPlayer.setDisable(true);
 				PigPane.this.pnChooseFirstPlayer.setDisable(true);
 				PigPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 			}
