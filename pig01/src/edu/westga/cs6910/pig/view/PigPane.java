@@ -5,7 +5,6 @@ import java.util.Optional;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
 import edu.westga.cs6910.pig.model.strategies.CautiousStrategy;
-import edu.westga.cs6910.pig.model.strategies.Cheater;
 import edu.westga.cs6910.pig.model.strategies.GreedyStrategy;
 import edu.westga.cs6910.pig.model.strategies.RandomStrategy;
 import javafx.event.ActionEvent;
@@ -104,12 +103,8 @@ public class PigPane extends BorderPane {
 		MenuItem greedyStrategy = new MenuItem("Greedy");
 		greedyStrategy.setMnemonicParsing(true);
 		greedyStrategy.setOnAction(new SetGreedyListener());
-
-		MenuItem cheating = new MenuItem("Cheater");
-		cheating.setMnemonicParsing(true);
-		cheating.setOnAction(new SetCheatingListener());
 		
-		this.pigStrategy.getItems().addAll(cautiousStrategy, randomStrategy, greedyStrategy, cheating);
+		this.pigStrategy.getItems().addAll(cautiousStrategy, randomStrategy, greedyStrategy);
 		return this.pigStrategy;
 	}
 	
@@ -132,19 +127,6 @@ public class PigPane extends BorderPane {
 		twoHumanPlayers.setOnAction(new AddSecondHumanPlayer());
 		this.twoPlayer.getItems().addAll(twoHumanPlayers);
 		return this.twoPlayer;
-	}
-
-	private class SetCheatingListener implements EventHandler<ActionEvent> {
-
-		@Override
-		public void handle(ActionEvent playStyle) {
-			Cheater cheating = new Cheater();	
-			PigPane.this.theGame.getComputerPlayer().setComputerStrategy(cheating);
-			PigPane.this.theGame.getComputerPlayer().setComputerPlayerName("!!! CHEATER !!!");
-			PigPane.this.addComputerPlayerPane(PigPane.this.theGame);
-			PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
-			PigPane.this.addStatusPane(PigPane.this.theGame);
-		}
 	}
 	
 	private class SetRandomListener implements EventHandler<ActionEvent> {
