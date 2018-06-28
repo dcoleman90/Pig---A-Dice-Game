@@ -14,7 +14,7 @@ class TestRollAgain {
 	@Test
 	void testGreedyStrategyRollAgainAfterRolling2TimesExpectTrue() {
 		GreedyStrategy greed = new GreedyStrategy();
-		assertEquals(true, greed.rollAgain(2, 5, 99));
+		assertEquals(true, greed.rollAgain(0, 5, 99));
 	}
 	
 	/**
