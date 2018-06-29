@@ -38,7 +38,6 @@ public class PigPane extends BorderPane {
 	private Game theGame;
 	private BorderPane pnContent;
 	private HumanPane pnHumanPlayer;
-	private Human2ndPlayerPane pnHumanPlayer2;
 	private ComputerPane pnComputerPlayer;
 	private StatusPane pnGameInfo;
 	private Pane pnChooseFirstPlayer;
@@ -75,16 +74,13 @@ public class PigPane extends BorderPane {
 		this.addHumanPlayerPane(this.theGame);
 		this.addStatusPane(this.theGame);
 		this.addComputerPlayerPane(this.theGame);
-//		if (PigPane.this.theGame.getComputerPlayer().getComputerStrategy().checkStrategyType() == 1) {
-//			this.addSecondHumanPlayerPane(this.theGame);
-//		}
 		this.setCenter(this.pnContent);
 		this.addBottomPaneOptions(this.theGame);  
 	}
 	
 	private void createMenuBar() {
 		MenuBar pigMenuBar = new MenuBar();
-		pigMenuBar.getMenus().addAll(this.createMenuBarFile(), this.createMenuBarStrategy(), this.twoPlayerOption());
+		pigMenuBar.getMenus().addAll(this.createMenuBarFile(), this.createMenuBarStrategy());
 		this.setTop(pigMenuBar);
 	}
 	
@@ -117,16 +113,6 @@ public class PigPane extends BorderPane {
 		exitPigGame.setOnAction(actionEvent -> System.exit(0));
 		pigFile.getItems().add(exitPigGame);
 		return pigFile;
-	}
-	
-	private Menu twoPlayerOption() {
-		this.twoPlayer = new Menu(" Two Player");
-		this.twoPlayer.setMnemonicParsing(true);
-		MenuItem twoHumanPlayers = new MenuItem("Two Human Players");
-		twoHumanPlayers.setMnemonicParsing(true);
-		twoHumanPlayers.setOnAction(new AddSecondHumanPlayer());
-		this.twoPlayer.getItems().addAll(twoHumanPlayers);
-		return this.twoPlayer;
 	}
 	
 	private class SetRandomListener implements EventHandler<ActionEvent> {
@@ -169,25 +155,6 @@ public class PigPane extends BorderPane {
 			PigPane.this.addStatusPane(PigPane.this.theGame);
 		}
 	}
-	
-	private class AddSecondHumanPlayer implements EventHandler<ActionEvent> {
-
-		@Override
-		public void handle(ActionEvent arg0) {
-			TextInputDialog changeName = new TextInputDialog("");
-			changeName.setTitle("Change Name");
-			changeName.setHeaderText("Change Player 2 name");
-			changeName.setContentText("What would you like to change your name to?");
-			Optional<String> newName = changeName.showAndWait();
-			if (newName.isPresent()) {
-				PigPane.this.theGame.getComputerPlayer().setComputerPlayerName(newName.get());
-				PigPane.this.addComputerPlayerPane(PigPane.this.theGame);
-			}
-			PigPane.this.addSecondHumanPlayerPane(PigPane.this.theGame);
-			PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
-			PigPane.this.addStatusPane(PigPane.this.theGame);
-		}
-	}
 
 	private void addFirstPlayerChooserPane(Game theGame) {
 		HBox topBox = new HBox();
@@ -203,14 +170,6 @@ public class PigPane extends BorderPane {
 		this.pnHumanPlayer = new HumanPane(theGame);
 		leftBox.getChildren().add(this.pnHumanPlayer);
 		this.pnContent.setLeft(leftBox);
-	}
-	
-	private void addSecondHumanPlayerPane(Game theGame) {
-		HBox rightBox = new HBox();
-		rightBox.getStyleClass().add("pane-border");
-		this.pnHumanPlayer2 = new Human2ndPlayerPane(theGame);
-		rightBox.getChildren().add(this.pnHumanPlayer2);
-		this.pnContent.setRight(rightBox);
 	}
 
 	private void addStatusPane(Game theGame) {
@@ -307,6 +266,7 @@ public class PigPane extends BorderPane {
 
 		@Override
 		public void handle(ActionEvent arg0) {
+			
 			TextInputDialog changeName = new TextInputDialog("");
 			changeName.setTitle("Change Name");
 			changeName.setHeaderText("Here you can reset your name");
@@ -316,6 +276,7 @@ public class PigPane extends BorderPane {
 				PigPane.this.theGame.getHumanPlayer().setName(newName.get());
 				PigPane.this.addHumanPlayerPane(PigPane.this.theGame);
 				PigPane.this.addFirstPlayerChooserPane(PigPane.this.theGame);
+				PigPane.this.pnChooseFirstPlayer.setDisable(true);
 				PigPane.this.addStatusPane(PigPane.this.theGame);
 			}
 		}
@@ -335,9 +296,6 @@ public class PigPane extends BorderPane {
 			PigPane.this.pnChooseFirstPlayer.setDisable(true);
 			PigPane.this.pnComputerPlayer.setDisable(false);
 			PigPane.this.pnHumanPlayer.setDisable(false);
-//			if (PigPane.this.theGame.getComputerPlayer().getComputerStrategy().checkStrategyType() == 1) {
-//				PigPane.this.pnHumanPlayer2.setDisable(false);
-//			}
 			PigPane.this.startNewGame(newGame);
 		}
 	}
@@ -391,8 +349,6 @@ public class PigPane extends BorderPane {
 			 */
 			public void handle(ActionEvent arg0) {
 				PigPane.this.pnComputerPlayer.setDisable(false);
-				PigPane.this.pigStrategy.setDisable(true);
-				PigPane.this.twoPlayer.setDisable(true);
 				PigPane.this.pnChooseFirstPlayer.setDisable(true);
 				PigPane.this.theGame.startNewGame(NewGamePane.this.theComputer);
 			}
@@ -409,8 +365,6 @@ public class PigPane extends BorderPane {
 			@Override
 			public void handle(ActionEvent event) {
 				PigPane.this.pnHumanPlayer.setDisable(false);
-				PigPane.this.pigStrategy.setDisable(true);
-				PigPane.this.twoPlayer.setDisable(true);
 				PigPane.this.pnChooseFirstPlayer.setDisable(true);
 				PigPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 			}

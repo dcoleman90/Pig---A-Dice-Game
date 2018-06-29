@@ -18,8 +18,7 @@ public class Game implements Observable {
 	/**
 	 * The goal score for the game
 	 */
-	public static final int GOAL_SCORE = 100;
-
+	public int goalScore = 100;
 	private ObjectProperty<Player> currentPlayerObject;
 
 	private HumanPlayer theHuman;
@@ -132,21 +131,21 @@ public class Game implements Observable {
 	/**
 	 * Return whether the game is over.
 	 * 
-	 * @return true iff currentPlayer.getTotal() >= GOAL_SCORE
+	 * @return true iff currentPlayer.getTotal() >= this.goalScore
 	 */
 	public boolean isGameOver() {
 		if (this.currentPlayerObject.getValue() == null) {
 			return true;
 		}
 
-		if (this.currentPlayerObject.getValue().getTotal() >= GOAL_SCORE) {
+		if (this.currentPlayerObject.getValue().getTotal() >= this.goalScore) {
 			return true;
 		}
 		return false;
 	}
-	
-	/**\
-	 * This method resets the game players score to zero
+
+	/**
+	 * \ This method resets the game players score to zero
 	 */
 	public void resetGame() {
 		this.theComputer.setTotal(0);
@@ -164,21 +163,24 @@ public class Game implements Observable {
 		return this.thePair;
 	}
 
+	
+	
+
 	/**
 	 * Returns a String showing the goal score, or, if the game is over, the name of
 	 * the winner.
-	 *  
+	 * 
 	 * @return a String representation of this Game
 	 */
 	public String toString() {
-		String result = "Goal Score: " + GOAL_SCORE;
+		String result = "Goal Score: " + this.goalScore;
 		result += System.getProperty("line.separator") + this.theHuman.getName() + ": " + this.theHuman.getTotal();
 		result += System.getProperty("line.separator") + this.theComputer.getName() + ": "
 				+ this.theComputer.getTotal();
 
-		if (this.theHuman.getTotal() >= GOAL_SCORE) {
+		if (this.theHuman.getTotal() >= this.goalScore) {
 			return result + System.getProperty("line.separator") + "Game over! Winner: " + this.theHuman.getName();
-		} else if (this.theComputer.getTotal() >= GOAL_SCORE) {
+		} else if (this.theComputer.getTotal() >= this.goalScore) {
 			return result + System.getProperty("line.separator") + "Game over! Winner: " + this.theComputer.getName();
 		} else {
 			return result;
@@ -218,12 +220,13 @@ public class Game implements Observable {
 	public ObjectProperty<Player> getCurrentPlayerObject() {
 		return this.currentPlayerObject;
 	}
-	
+
 	/**
 	 * Added setter for instance variable currentPlayerObject used mostly for
 	 * testing purposes - this method changes the currentPlayerObject to theComputer
 	 * 
-	 * @param theComputerPlayer is the new accepted currentPlayerObject
+	 * @param theComputerPlayer
+	 *            is the new accepted currentPlayerObject
 	 */
 	public void setCurrentPlayerObjectToComputer(ComputerPlayer theComputerPlayer) {
 		this.currentPlayerObject.setValue(theComputerPlayer);
@@ -233,7 +236,8 @@ public class Game implements Observable {
 	 * Added setter for instance variable currentPlayerObject used mostly for
 	 * testing purposes - this method changes the currentPlayerObject to theHuman
 	 * 
-	 * @param theHumanPlayer is the new accepted currentPlayerObject
+	 * @param theHumanPlayer
+	 *            is the new accepted currentPlayerObject
 	 */
 	public void setCurrentPlayerObjectToHuman(HumanPlayer theHumanPlayer) {
 		this.currentPlayerObject.setValue(theHumanPlayer);
@@ -261,12 +265,21 @@ public class Game implements Observable {
 	}
 
 	/**
-	 * Added getter for final constant GOAL_SCORE used mostly for testing purposes
+	 * Added getter for final constant this.goalScore used mostly for testing purposes
 	 * 
-	 * @return GOAL_SCORE
+	 * @return this.goalScore
 	 */
-	public static int getGoalScore() {
-		return GOAL_SCORE;
+	public int getGoalScore() {
+		return this.goalScore;
+	}
+	
+	
+	/**
+	 * This method is the setter for the instance variable goalScore
+	 * @param acceptedScore is what this.goalScore will equal
+	 */
+	public void setGoalScore(int acceptedScore) {
+		this.goalScore = acceptedScore;
 	}
 
 }

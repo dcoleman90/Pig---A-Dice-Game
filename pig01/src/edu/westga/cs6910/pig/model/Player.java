@@ -53,4 +53,16 @@ public interface Player {
 	 * @return	The number of pips showing on the die that were just rolled
 	 */
 	String getDiceValues();
+	
+	/**
+	 * Sets the value of the total rolled dice from all turns
+	 * @param acceptedVaule the new value of the total
+	 */
+	void setTotal(int acceptedVaule);
+
+	/**
+	 * Sets the value of the total rolled dice from just this turn
+	 * @param acceptedVaule the new value of the dice roll
+	 */
+	void setTurnTotal(int acceptedVaule);
 }
