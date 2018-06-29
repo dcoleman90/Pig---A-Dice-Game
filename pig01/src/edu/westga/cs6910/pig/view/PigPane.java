@@ -75,9 +75,9 @@ public class PigPane extends BorderPane {
 		this.addHumanPlayerPane(this.theGame);
 		this.addStatusPane(this.theGame);
 		this.addComputerPlayerPane(this.theGame);
-		if (PigPane.this.theGame.getComputerPlayer().getComputerStrategy().checkStrategyType() == 1) {
-			this.addSecondHumanPlayerPane(this.theGame);
-		}
+//		if (PigPane.this.theGame.getComputerPlayer().getComputerStrategy().checkStrategyType() == 1) {
+//			this.addSecondHumanPlayerPane(this.theGame);
+//		}
 		this.setCenter(this.pnContent);
 		this.addBottomPaneOptions(this.theGame);  
 	}
@@ -335,9 +335,9 @@ public class PigPane extends BorderPane {
 			PigPane.this.pnChooseFirstPlayer.setDisable(true);
 			PigPane.this.pnComputerPlayer.setDisable(false);
 			PigPane.this.pnHumanPlayer.setDisable(false);
-			if (PigPane.this.theGame.getComputerPlayer().getComputerStrategy().checkStrategyType() == 1) {
-				PigPane.this.pnHumanPlayer2.setDisable(false);
-			}
+//			if (PigPane.this.theGame.getComputerPlayer().getComputerStrategy().checkStrategyType() == 1) {
+//				PigPane.this.pnHumanPlayer2.setDisable(false);
+//			}
 			PigPane.this.startNewGame(newGame);
 		}
 	}

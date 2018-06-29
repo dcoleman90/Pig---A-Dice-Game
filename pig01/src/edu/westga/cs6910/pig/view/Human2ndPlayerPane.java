@@ -2,7 +2,6 @@ package edu.westga.cs6910.pig.view;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
-import edu.westga.cs6910.pig.model.strategies.ManualStrategy;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
@@ -42,14 +41,10 @@ public class Human2ndPlayerPane extends GridPane implements InvalidationListener
 		this.theGame.addListener(this);
 		
 		this.theSecondPlayer = this.theGame.getComputerPlayer();
-		this.setStrategy();
+;
 		this.buildPane();
 	}
 	
-	private void setStrategy() {
-		ManualStrategy manual = new ManualStrategy();
-		this.theSecondPlayer.setComputerStrategy(manual);
-	}
 	
 	private void buildPane() {
 		HBox topBox = new HBox();

@@ -28,9 +28,4 @@ public class CautiousStrategy implements PigStrategy {
 	public boolean rollAgain(int rollTaken, int pointsRolled, int pointDifferance) {
 		return false;
 	}
-
-	@Override
-	public int checkStrategyType() {
-		return 0;
-	}
 }

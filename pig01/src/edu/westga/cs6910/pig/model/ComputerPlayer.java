@@ -46,10 +46,12 @@ public class ComputerPlayer extends AbstractPlayer {
 			this.computerName = acceptedName;
 		}
 	}
-	
+
 	/**
 	 * This is the setter method for this.turnsRemaining
-	 * @param acceptedTurnsRemaining is the new value for this.turnsRemaining
+	 * 
+	 * @param acceptedTurnsRemaining
+	 *            is the new value for this.turnsRemaining
 	 */
 	public void setTurnsRemaining(int acceptedTurnsRemaining) {
 		this.turnsRemaining = acceptedTurnsRemaining;
@@ -90,30 +92,13 @@ public class ComputerPlayer extends AbstractPlayer {
 		super.takeTurn();
 		super.setIsMyTurnFalse();
 		boolean takeTurn = true;
-		while (this.strategy.checkStrategyType() == 0 && takeTurn) {
-			if (this.strategy.rollAgain(this.turnsRemaining, this.getTurnTotal(), this.getTotal())) {
-				this.turnsRemaining++;
-				this.takeTurn();
-			}
-			this.turnsRemaining = 0;
-			takeTurn = false;
-		}
-		while (this.strategy.checkStrategyType() == 1 && takeTurn && this.getTurnTotal() != 0) {
-			takeTurn = false;
-			super.setIsMyTurnTrue();
-		}
-		while (this.strategy.checkStrategyType() == 2 && takeTurn) {
-			takeTurn = false;
-			this.turnsRemaining++;
-			this.cheatersRolls(this.turnsRemaining);
-		}
-	}
 
-	private void cheatersRolls(int acceptedNumberOfRounds) {
-		int numberOfRounds = acceptedNumberOfRounds;
-		int cheatersTotal = numberOfRounds * 25;
-		this.resetTurnTotal();
-		this.setTotal(cheatersTotal);
+		if (this.strategy.rollAgain(this.turnsRemaining, this.getTurnTotal(), this.getTotal())) {
+			this.turnsRemaining++;
+			this.takeTurn();
+		}
+		this.turnsRemaining = 0;
+		takeTurn = false;
 	}
 
 	// *************************** accessor methods ****************************

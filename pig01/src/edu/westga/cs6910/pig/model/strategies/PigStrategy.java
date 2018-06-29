@@ -24,12 +24,4 @@ public interface PigStrategy {
 	 * @return true if player should roll false if they should hold
 	 */
 	boolean rollAgain(int rollTaken, int pointsRolled, int pointDifferance);
-	
-	
-	/**
-	 * This method check to see if the PigStrategy is manual and thus to be avoid
-	 * @return 1 if manual 0 if of standard design 
-	 */
-	int checkStrategyType();
-
 }

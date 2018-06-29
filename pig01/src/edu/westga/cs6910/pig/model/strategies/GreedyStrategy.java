@@ -37,9 +37,4 @@ public class GreedyStrategy implements PigStrategy {
 
 		}
 	}
-
-	@Override
-	public int checkStrategyType() {
-		return 0;
-	}
 }
