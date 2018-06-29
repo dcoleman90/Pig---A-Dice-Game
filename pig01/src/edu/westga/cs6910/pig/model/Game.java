@@ -145,6 +145,18 @@ public class Game implements Observable {
 	}
 
 	/**
+	 * This method returns the current highest score in the game
+	 * @return the highest score between the two players
+	 */
+	public int getHighestScore() {
+		if (this.theComputer.getTotal() > this.theHuman.getTotal()) {
+			return this.theComputer.getTotal();
+		} else {
+			return this.theHuman.getTotal();
+		}
+	}
+	
+	/**
 	 * \ This method resets the game players score to zero
 	 */
 	public void resetGame() {

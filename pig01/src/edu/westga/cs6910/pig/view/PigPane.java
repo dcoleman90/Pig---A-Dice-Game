@@ -217,6 +217,35 @@ public class PigPane extends BorderPane {
 		this.pnContent.setBottom(this.bottomBox);
 	}
 	
+	private class ChangeScoreGoal implements EventHandler<ActionEvent> {
+		
+		@Override
+		public void handle(ActionEvent arg0) {
+			Alert changeScore = new Alert(AlertType.CONFIRMATION);
+			changeScore.setTitle("Select the Game's ending score");
+			changeScore.setHeaderText("What would you like the ending score to be?");
+			changeScore.setContentText("Choose the score you wish to play too");
+
+			ButtonType buttonScore50 = new ButtonType("50");
+			ButtonType buttonScore100 = new ButtonType("100");
+			ButtonType buttonScore200 = new ButtonType("200");
+			ButtonType buttonCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+			changeScore.getButtonTypes().setAll(buttonScore50, buttonScore100, buttonScore200, buttonCancel);
+			Optional<ButtonType> result = changeScore.showAndWait();
+			if (result.get() == buttonScore50) {
+			    PigPane.this.theGame.setGoalScore(50);
+			} else if (result.get() == buttonScore100) {
+				PigPane.this.theGame.setGoalScore(100);
+			} else if (result.get() == buttonScore200) {
+				PigPane.this.theGame.setGoalScore(200);
+			} 
+			PigPane.this.addStatusPane(PigPane.this.theGame);
+			PigPane.this.pnChooseFirstPlayer.setDisable(true);
+			
+		}
+	}
+	
 	private class NewGameAlert implements EventHandler<ActionEvent> {
 
 		@Override
@@ -258,6 +287,7 @@ public class PigPane extends BorderPane {
 			gameInstructions.showAndWait();
 			ButtonType exit = new ButtonType("exit", ButtonData.CANCEL_CLOSE);
 			gameInstructions.getButtonTypes().setAll(exit);
+			PigPane.this.pnChooseFirstPlayer.setDisable(true);
 		}
 	}
 	
@@ -349,6 +379,8 @@ public class PigPane extends BorderPane {
 			public void handle(ActionEvent arg0) {
 				PigPane.this.pnComputerPlayer.setDisable(false);
 				PigPane.this.pnChooseFirstPlayer.setDisable(true);
+				ChangeScoreGoal selectGoal = new ChangeScoreGoal();
+				selectGoal.handle(arg0);
 				PigPane.this.theGame.startNewGame(NewGamePane.this.theComputer);
 			}
 		}
@@ -365,6 +397,8 @@ public class PigPane extends BorderPane {
 			public void handle(ActionEvent event) {
 				PigPane.this.pnHumanPlayer.setDisable(false);
 				PigPane.this.pnChooseFirstPlayer.setDisable(true);
+				ChangeScoreGoal selectGoal = new ChangeScoreGoal();
+				selectGoal.handle(event);
 				PigPane.this.theGame.startNewGame(NewGamePane.this.theHuman);
 			}
 		}
