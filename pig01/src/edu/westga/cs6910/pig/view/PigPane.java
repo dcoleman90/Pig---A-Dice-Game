@@ -43,7 +43,6 @@ public class PigPane extends BorderPane {
 	private Pane pnChooseFirstPlayer;
 	private GridPane bottomBox;
 	private Menu pigStrategy;
-	private Menu twoPlayer;
 
 	/**
 	 * Creates a pane object to provide the view for the specified Game model
