@@ -26,7 +26,7 @@ public class Die {
 	 * Gives the Die a new value 1 - 6.
 	 */
 	public void roll() {
-		this.numberShowing = this.generator.nextInt(6) + 1;
+		this.numberShowing = this.generator.nextInt(8) + 1;
 	}
 
 	/**
